@@ -24,7 +24,7 @@ $mysqli_connection = @mysqli_connect("$dbHost", "$dbUser", "$dbPass", "$dbName")
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Minical Installation Wizard</title>
+    <title>OS Grand Horizon Installation Wizard</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -231,8 +231,8 @@ $mysqli_connection = @mysqli_connect("$dbHost", "$dbUser", "$dbPass", "$dbName")
                                         echo "";
                                     }
                                     ?></td>
-                                <td>Project URL that points to minical/public directory<br>(E.g.
-                                    http://localhost/minical/public)
+                                <td>Project URL that points to osgrandhorizon/public directory<br>(E.g.
+                                    http://localhost/osgrandhorizon/public)
                                 </td>
                                 <td><?php
                                     if (isset($projectUrl) && $projectUrl !== '') {
@@ -252,8 +252,8 @@ $mysqli_connection = @mysqli_connect("$dbHost", "$dbUser", "$dbPass", "$dbName")
                                         echo "";
                                     }
                                     ?></td>
-                                <td>Project URL that points to minical/api directory<br>(E.g.
-                                    http://localhost/minical/api)
+                                <td>Project URL that points to osgrandhorizon/api directory<br>(E.g.
+                                    http://localhost/osgrandhorizon/api)
                                 </td>
                                 <td><?php
                                     if (isset($apiUrl) && $apiUrl !== '') {
@@ -359,7 +359,7 @@ $mysqli_connection = @mysqli_connect("$dbHost", "$dbUser", "$dbPass", "$dbName")
                                     $mysqli_connection = false;
                                 } elseif ($mysql_version <= 5.5) {
                                     $check = false;
-                                    echo '<p class="error database-connection-status" style="display:none;">Not compatible with this version of '.($mysql_type ? $mysql_type : 'MySql').' <br/>Minical supports Mysql/MariaDB 5.5 and above.</p>';
+                                    echo '<p class="error database-connection-status" style="display:none;">Not compatible with this version of '.($mysql_type ? $mysql_type : 'MySql').' <br/>OS Grand Horizon supports Mysql/MariaDB 5.5 and above.</p>';
                                     $mysqli_compatible = false;
                                     $mysqli_connection = false;
                                 } else {
@@ -438,7 +438,7 @@ $mysqli_connection = @mysqli_connect("$dbHost", "$dbUser", "$dbPass", "$dbName")
 
                     <div class="row pull-right btn-element register-btn">
                         <b class="size">
-                            <span style="color: #259326;">Minical installation has been completed.</span>
+                            <span style="color: #259326;">OS Grand Horizon installation has been completed.</span>
                             <br/><br/>
                             Proceed with account setup:&nbsp;</b>
                         <a type="button" class="btn btn-primary" href="<?php echo $projectUrl; ?>/auth/register">Create

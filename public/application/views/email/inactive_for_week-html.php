@@ -372,7 +372,7 @@
 																<br/><br/>
 																If our system isn't providing enough value to your business, we apologize for it and would appreciate knowing what we can do to serve you better.
 																<br/>
-																Even if you are no longer interested in Minical, we would still love to hear your advice and feedback.
+																Even if you are no longer interested in OS Grand Horizon, we would still love to hear your advice and feedback.
 																<br/>
 																We firmly believe that listening to our customers is the best way to improve our product.
 																<br/>
@@ -384,11 +384,11 @@
 																<br/>
 																<strong>Jaeyun Noh</strong>
 																<br/>
-																Founder, Minical Inc.
+																Founder, OS Grand Horizon Inc.
 																<br/><br/>
 																Phone: +1 (403) 708 0563
 																<br/>
-																Email: jaeyun@minical.io
+																Email: jaeyun@osgrandhorizon.io
 																<br/>
 																
 																

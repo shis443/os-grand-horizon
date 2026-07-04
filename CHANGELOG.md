@@ -1,6 +1,6 @@
 # CHANGELOG — Sea Panther Reservas
 
-## Reused from miniCal as-is
+## Reused from OS Grand Horizon as-is
 - Auth/session (Tank_auth), CI3/HMVC routing (wiredesignz MX), i18n (`language` helper +
   English/Spanish packs already shipped), room creation (`Room_model`), booking engine
   (`booking`/`booking_block` tables, `Booking_model` state machine), currency table (EUR
@@ -38,7 +38,7 @@ cents (`amount_eur`), formatted at the view layer via `panther_eur()`.
 
 ## Deviations from the original brief (see PLAN.md §5 for the reasoning)
 - "Guest nationality" is rendered as `guest name (booking source)` — e.g. "Aru (AirBNB)" —
-  since miniCal has no nationality field; booking source (Airbnb/Direct/Booking.com/…)
+  since OS Grand Horizon has no nationality field; booking source (Airbnb/Direct/Booking.com/…)
   is the closest existing concept and matches the example given.
 - Added `cleaning_requests` as a small extra table not in the original 4-table list, to
   represent a per-booking cleaning flag (core only tracks cleanliness per room).
@@ -65,3 +65,40 @@ cents (`amount_eur`), formatted at the view layer via `panther_eur()`.
 July 2026 sheet across the 3 fixed cabins: two in-house stays, a same-day turnover
 on both occupied rooms, one upcoming reservation, two surcharges, two cash
 transactions, and one open cleaning request.
+
+## Rebrand: Minical → OS Grand Horizon
+Removed every "Minical" reference from the codebase and replaced it with
+"OS Grand Horizon" — display text, code identifiers, filenames, config, and
+DB-seeded content. Scope:
+- ~800 text occurrences across 101 files (views, controllers, models, JS,
+  language packs, docs), replaced case-variant-aware so code identifiers
+  stayed syntactically valid (e.g. `miniCal_Hook`/`$miniCal_filter` in the
+  vendored WordPress-style hooks engine → `osGrandHorizon_Hook`/
+  `$osGrandHorizon_filter`; DB columns `minical_room_type_id`/
+  `minical_rate_plan_id` in the Channex integration → `osgrandhorizon_room_type_id`/
+  `osgrandhorizon_rate_plan_id`, renamed consistently at both definition and
+  every call site) while genuinely user-facing prose/titles read "OS Grand Horizon".
+- Renamed files: `minical-seed.sql` → `osgrandhorizon-seed.sql`,
+  `minical-logo.jpeg` → `osgrandhorizon-logo.jpeg`, `.idea/miniCal.iml` →
+  `.idea/osgrandhorizon.iml` (+ references updated).
+- Renamed the `minical_installation_meta` table to `osgrandhorizon_installation_meta`
+  (code + live table), and renamed the database itself `minical` → `osgrandhorizon`
+  (`RENAME TABLE` per table, since MariaDB has no `RENAME DATABASE`).
+- Fixed DB-seeded branding data that a code-only grep wouldn't catch:
+  `whitelabel_partner` id=0's name/username/logo, and ~20 rows in
+  `language_phrase`/`language_translation` (a secondary, DB-backed i18n table
+  unrelated to the `application/language/*.php` packs).
+- Defined `$config['branding_name'] = 'OS Grand Horizon'` in `config/config.php`
+  — this config key was already referenced by 6 view files (login/register
+  headings, browser title fallback) but had never been defined anywhere
+  upstream, so it silently rendered blank; this is a latent bug fix as much
+  as a branding change.
+- README.md was rewritten rather than mechanically translated: its original
+  links (GitHub org, marketplace, docs site, demo, Discord) point at the
+  real upstream miniCal project's infrastructure, which has nothing to do
+  with this fork — keeping them under the new name would have been actively
+  misleading, so they were replaced with pointers to this repo's own
+  SETUP.md/PLAN.md instead.
+- Verified zero PHP syntax errors across every changed file
+  (`php -l`) and re-ran the full login + all 7 panther_* extensions
+  end-to-end against the renamed database afterward.

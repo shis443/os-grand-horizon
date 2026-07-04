@@ -103,16 +103,16 @@
 						data-controls-modal="#myModal" 
 					   	data-backdrop="static" 
 					   	data-keyboard="false" 
-					   	value="Try Minical now!"
+					   	value="Try OS Grand Horizon now!"
                         name="register_submit_form" />
 				</div>
 			</div>
 		</div>
         
 		<?php echo "By creating an account you agree to our "; ?> 
-        <a href="https://demo.minical.io/auth/show_terms_of_service"><?php echo l('Terms Of Service', true);?></a>
+        <a href="https://demo.osgrandhorizon.io/auth/show_terms_of_service"><?php echo l('Terms Of Service', true);?></a>
         <?php echo ", and " ?>
-        <a href="https://demo.minical.io/auth/show_privacy_policy"><?php echo l('Privacy Policy', true);?></a>
+        <a href="https://demo.osgrandhorizon.io/auth/show_privacy_policy"><?php echo l('Privacy Policy', true);?></a>
 	</div>
 
 	<div class="col-md-3 text-center" >

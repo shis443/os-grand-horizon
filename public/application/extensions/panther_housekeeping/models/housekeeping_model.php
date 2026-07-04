@@ -1,7 +1,7 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
- * Adapts miniCal's core room-status/housekeeping engine (room.status,
+ * Adapts osGrandHorizon's core room-status/housekeeping engine (room.status,
  * company housekeeping_auto_dirty/clean settings) plus a small extension
  * table (cleaning_requests) for manual per-booking "Cleaning Requested"
  * toggles raised from the reservation grid. A room counts as an open task

@@ -188,7 +188,7 @@ if(
                 </h4>
             </div>
             <div class="modal-body">
-                <?php echo l('We have sent a verification link to your email address. Please verify your email to continue using Minical', true); ?>.
+                <?php echo l('We have sent a verification link to your email address. Please verify your email to continue using OS Grand Horizon', true); ?>.
                 <br/><a id="resend-verification-link" href="#"><?php echo l('RESEND VERIFICATION LINK', true); ?></a>
             </div>
         </div><!-- /.modal-content -->

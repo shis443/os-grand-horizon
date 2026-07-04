@@ -27,8 +27,8 @@ class="text-center"
 		<?php $email = '';
             $password = '';
 
-            if(auto_fill_credentials() && current_url() == 'https://demo.minical.io/auth/login'){
-	            $email = 'demo@minical.io';
+            if(auto_fill_credentials() && current_url() == 'https://demo.osgrandhorizon.io/auth/login'){
+	            $email = 'demo@osgrandhorizon.io';
 	            $password = '12345';
         	} 
         ?>
@@ -89,7 +89,7 @@ class="text-center"
 	<!--
 	<a href="https://www.google.com/intl/en/chrome/browser/" style="text-decoration:none;">
 		<img src="../images/chrome-logo.gif" /><br/>
-		minical.io works the best with Google Chrome. <br/>Click here to download Google Chrome for free<br/>
+		osgrandhorizon.io works the best with Google Chrome. <br/>Click here to download Google Chrome for free<br/>
 	</a>	
 	-->
 </form>

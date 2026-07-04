@@ -17,8 +17,8 @@ $lang['run_night_audit'] = 'Run Night Audit';
 $lang['undo_night_audit'] = 'Undo Night Audit (Beta)';
 $lang['selling_date_behind_today'] = 'Selling Date is behind Today';
 
-$lang['how_to_setup_minical'] = 'Làm thế nào để thiết lập minical';
-$lang['how_to_use_minical'] = 'Làm thế nào để sử dụng minical';
+$lang['how_to_setup_osgrandhorizon'] = 'Làm thế nào để thiết lập osgrandhorizon';
+$lang['how_to_use_osgrandhorizon'] = 'Làm thế nào để sử dụng osgrandhorizon';
 $lang['support_center'] = 'Trung tâm hỗ trợ';
 $lang['my_account'] = 'Tài khoản của tôi';
 $lang['my_properties'] = 'Thuộc tính của tôi';
@@ -96,7 +96,7 @@ $lang['customer_fields'] = 'Trường khách hàng';
 $lang['unconfirmed_reservations'] = 'Bảo lưu Không xác nhận';
 
 $lang['online_booking_engine'] = 'Đặt phòng trực tuyến';
-$lang['minical_channel_manager'] = 'Quản lý kênh mờ';
+$lang['osgrandhorizon_channel_manager'] = 'Quản lý kênh mờ';
 $lang['myallocator'] = 'Bộ phân tách';
 
 $lang['images'] = 'Hình ảnh';

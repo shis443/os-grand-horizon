@@ -37,11 +37,11 @@
 		
 	<h1>We sent you a confirmation email</h1>
 	<br />
-        <h3>Please check your inbox and activate your <?php if($whitelabelinfo){ echo ucfirst($whitelabelinfo['name']); }else{ echo 'Minical';} ?> account</h3>
+        <h3>Please check your inbox and activate your <?php if($whitelabelinfo){ echo ucfirst($whitelabelinfo['name']); }else{ echo 'OS Grand Horizon';} ?> account</h3>
 	<h3>If you need any assistance, please contact us at <? echo $support_email;?></h3>
 	<br/>
 	<br/>
 	<h3>
-		<a href="https://www.minical.io">Return to <?php if($whitelabelinfo){ echo ucfirst($whitelabelinfo['name']); }else{ echo 'Minical';} ?> homepage</a>
+		<a href="https://www.osgrandhorizon.io">Return to <?php if($whitelabelinfo){ echo ucfirst($whitelabelinfo['name']); }else{ echo 'OS Grand Horizon';} ?> homepage</a>
 	</h3>
 </center>

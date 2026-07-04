@@ -17,8 +17,8 @@ $lang['run_night_audit'] = 'Run Night Audit';
 $lang['undo_night_audit'] = 'Undo Night Audit (Beta)';
 $lang['selling_date_behind_today'] = 'Selling Date is behind Today';
 
-$lang['how_to_setup_minical'] = '여유 공간을 설정하는 방법';
-$lang['how_to_use_minical'] = '사용 방법';
+$lang['how_to_setup_osgrandhorizon'] = '여유 공간을 설정하는 방법';
+$lang['how_to_use_osgrandhorizon'] = '사용 방법';
 $lang['support_center'] = '지원 센터';
 $lang['my_account'] = '내 계정';
 $lang['my_properties'] = '내 등록 정보';
@@ -96,7 +96,7 @@ $lang['customer_fields'] = '고객 필드';
 $lang['unconfirmed_reservations'] = '미확인 예약';
 
 $lang['online_booking_engine'] = '온라인 예약 엔진';
-$lang['minical_channel_manager'] = '여유 채널 관리자';
+$lang['osgrandhorizon_channel_manager'] = '여유 채널 관리자';
 $lang['myallocator'] = 'Myallocator';
 
 $lang['images'] = '이미지';

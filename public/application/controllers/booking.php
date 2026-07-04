@@ -239,7 +239,7 @@ class Booking extends MY_Controller
 
         $whitelabelinfo = $this->session->userdata('white_label_information');
 
-        $data['support_email'] = $whitelabelinfo && isset($whitelabelinfo['support_email']) && $whitelabelinfo['support_email'] ? $whitelabelinfo['support_email'] : 'support@minical.io';
+        $data['support_email'] = $whitelabelinfo && isset($whitelabelinfo['support_email']) && $whitelabelinfo['support_email'] ? $whitelabelinfo['support_email'] : 'support@osgrandhorizon.io';
 
         $data['whitelabel_detail'] = $whitelabelinfo;
         $data['is_show_unassigned_rooms'] = $company_data['force_room_selection'];

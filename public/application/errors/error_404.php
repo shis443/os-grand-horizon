@@ -58,7 +58,7 @@ p {
 		<h1><?php echo $heading; ?></h1>
 		<div style="margin:20px;">
             <br/><br/>
-			For any questions/inquiries, contact support at <a href="mailto:support@minical.io">support@minical.io<a/>
+			For any questions/inquiries, contact support at <a href="mailto:support@osgrandhorizon.io">support@osgrandhorizon.io<a/>
 		</div>
 		<?php //echo $message; ?>
 	</div>

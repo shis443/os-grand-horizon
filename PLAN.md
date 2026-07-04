@@ -1,4 +1,4 @@
-# PLAN.md — Sea Panther Reservas on miniCal
+# PLAN.md — Sea Panther Reservas on OS Grand Horizon
 
 Status: **built and verified locally** (all 7 extensions, running end-to-end at
 `http://localhost:8080/public` per SETUP.md). The 5 open questions in §5 were
@@ -8,7 +8,7 @@ behavior; none are hard to change.
 
 ## 1. Architecture recap (what reuse actually means here)
 
-miniCal is CodeIgniter 3 + the wiredesignz **MX** HMVC library. Everything under
+OS Grand Horizon is CodeIgniter 3 + the wiredesignz **MX** HMVC library. Everything under
 `public/application/extensions/<name>/` is a self-contained HMVC module:
 
 ```
@@ -28,14 +28,14 @@ Activation is **pure local DB**, no marketplace/network dependency:
 `extensions_x_company(extension_name, company_id, is_active)`, checked by
 `Permission->is_extension_active()` (`libraries/permission.php` →
 `permission_model.php:565`). `controllers/extensions.php`'s marketplace-fetch
-branch only runs when `HTTP_HOST` is `app.minical.io`/`demo.minical.io` — never
+branch only runs when `HTTP_HOST` is `app.osgrandhorizon.io`/`demo.osgrandhorizon.io` — never
 on a self-hosted single-property install. So: create the module folder, insert
 one `extensions_x_company` row (`is_active=1`) per extension for our one
 company, done.
 
 Two existing core mechanisms are directly reusable rather than reinventable:
 
-- **`company.selling_date`** is already miniCal's business-date override — it
+- **`company.selling_date`** is already OS Grand Horizon's business-date override — it
   drives auto-checkout (`Booking_model::auto_check_out_guests`), occupancy
   math, and is read everywhere as "today" (`MY_Controller.php:283`,
   `booking.php` throughout). This *is* the "Simulator Date" feature, not a new
@@ -99,7 +99,7 @@ model to read current sim date / active month.
   `panther_surcharges`'s model directly, see §4.4).
 - **Views**: `views/grid.php` (month table: rows 1–31, one column-group per
   room with 3 sub-cells), `views/partials/cell.php`.
-- Guest-source label ("Aru (Airbnb)"): miniCal has no "nationality" field on
+- Guest-source label ("Aru (Airbnb)"): OS Grand Horizon has no "nationality" field on
   customers; it does have `booking_source` (Direct/Airbnb/Booking.com/...).
   **Proposed interpretation**: render `<guest first name> (<booking source
   name>)`, reusing the existing `booking_source` table/relationship rather
@@ -195,7 +195,7 @@ model to read current sim date / active month.
 ## 5. Open questions / flagged decisions — RESOLVED (proceeded with the proposed default on each; all built and verified)
 
 1. **"Nationality" label** — RESOLVED as `guest name (booking source)`, e.g.
-   "Aru (AirBNB)" (capitalization is miniCal's own `COMMON_BOOKING_SOURCES`
+   "Aru (AirBNB)" (capitalization is OS Grand Horizon's own `COMMON_BOOKING_SOURCES`
    constant, not ours). No customer schema change made. Revisit if you want a
    literal nationality field instead.
 2. **Per-booking "Cleaning Requested" flag** — RESOLVED: added

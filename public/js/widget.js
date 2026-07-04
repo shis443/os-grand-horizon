@@ -2,12 +2,12 @@ window.onload = function () {
     if(!window.isRoomsyWidgetLoaded) {
         window.isRoomsyWidgetLoaded = true;
         var elements = [];
-        var ele = document.getElementById("minical-booking-widget");
+        var ele = document.getElementById("osgrandhorizon-booking-widget");
         if (ele) {
             elements.push(ele);
         }
         
-        ele = document.getElementsByClassName("minical-booking-widget");
+        ele = document.getElementsByClassName("osgrandhorizon-booking-widget");
         if (ele) {
             for (var i = 0; i < ele.length; i++) {
                 elements.push(ele[i]);
@@ -20,7 +20,7 @@ window.onload = function () {
 
                     var div = elements[key];
                     // var id = div.getAttribute("name");
-                    var id = window.miniCal.companyId ? window.miniCal.companyId : div.getAttribute("name");
+                    var id = window.osGrandHorizon.companyId ? window.osGrandHorizon.companyId : div.getAttribute("name");
 
                     // get today
                     var currentDate = new Date(new Date().getTime());
@@ -43,7 +43,7 @@ window.onload = function () {
                         ],
                     }
 
-                    var formUrl = window.miniCal.projectUrl ? window.miniCal.projectUrl : 'https://app.minical.io/';
+                    var formUrl = window.osGrandHorizon.projectUrl ? window.osGrandHorizon.projectUrl : 'https://app.osgrandhorizon.io/';
                     
                     var xhr = new XMLHttpRequest();
                     xhr.open("POST", formUrl+"language_translation/get_translated_phrase");

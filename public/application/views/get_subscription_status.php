@@ -24,10 +24,10 @@
 	        			<th><?php echo l('Company Id', true);?></th>
 	        			<th><?php echo l('Company Name', true);?></th>
 	        			<th><?php echo l('Subscription Id', true);?></th>
-	        			<th><?php echo l('Minical / Chargify Subscription Type', true);?></th>
-	        			<th><?php echo l('Minical / Chargify Subscription State', true);?></th>
-	        			<th><?php echo l('Minical / Chargify Renewal Period', true);?></th>
-	        			<th><?php echo l('Minical / Chargify Renewal Cost', true);?></th>
+	        			<th><?php echo l('OS Grand Horizon / Chargify Subscription Type', true);?></th>
+	        			<th><?php echo l('OS Grand Horizon / Chargify Subscription State', true);?></th>
+	        			<th><?php echo l('OS Grand Horizon / Chargify Renewal Period', true);?></th>
+	        			<th><?php echo l('OS Grand Horizon / Chargify Renewal Cost', true);?></th>
 	        		</tr>
 
 	        		<?php foreach ($comp_list as $key => $value) { ?>

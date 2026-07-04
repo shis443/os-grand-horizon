@@ -87,7 +87,7 @@ class Email_template {
 
             $whitelabelinfo = $this->ci->session->userdata('white_label_information');
 
-            $from_email = isset($whitelabelinfo['do_not_reply_email']) && $whitelabelinfo['do_not_reply_email'] ? $whitelabelinfo['do_not_reply_email'] : (isset($company['email']) && $company['email'] ? $company['email'] : 'donotreply@minical.io');
+            $from_email = isset($whitelabelinfo['do_not_reply_email']) && $whitelabelinfo['do_not_reply_email'] ? $whitelabelinfo['do_not_reply_email'] : (isset($company['email']) && $company['email'] ? $company['email'] : 'donotreply@osgrandhorizon.io');
 
             $this->ci->email->from($from_email, $company['name']);
             $this->ci->email->to($email_list);
@@ -162,7 +162,7 @@ class Email_template {
 
             $whitelabelinfo = $this->ci->session->userdata('white_label_information');
 
-            $from_email = isset($whitelabelinfo['do_not_reply_email']) && $whitelabelinfo['do_not_reply_email'] ? $whitelabelinfo['do_not_reply_email'] : (isset($company['email']) && $company['email'] ? $company['email'] : 'donotreply@minical.io');
+            $from_email = isset($whitelabelinfo['do_not_reply_email']) && $whitelabelinfo['do_not_reply_email'] ? $whitelabelinfo['do_not_reply_email'] : (isset($company['email']) && $company['email'] ? $company['email'] : 'donotreply@osgrandhorizon.io');
 
             $this->ci->email->from($from_email, $company['name']);
             $this->ci->email->to($email_list);
@@ -528,7 +528,7 @@ class Email_template {
 
         $whitelabelinfo = $this->ci->session->userdata('white_label_information');
 
-        $from_email = isset($whitelabelinfo['do_not_reply_email']) && $whitelabelinfo['do_not_reply_email'] ? $whitelabelinfo['do_not_reply_email'] : (isset($company['email']) && $company['email'] ? $company['email'] : 'donotreply@minical.io');
+        $from_email = isset($whitelabelinfo['do_not_reply_email']) && $whitelabelinfo['do_not_reply_email'] ? $whitelabelinfo['do_not_reply_email'] : (isset($company['email']) && $company['email'] ? $company['email'] : 'donotreply@osgrandhorizon.io');
 
         $this->ci->email->from($from_email, $company['name']);
         $this->ci->email->to($email_list);
@@ -831,7 +831,7 @@ class Email_template {
 
         $whitelabelinfo = $this->ci->session->userdata('white_label_information');
 
-        $from_email = isset($whitelabelinfo['do_not_reply_email']) && $whitelabelinfo['do_not_reply_email'] ? $whitelabelinfo['do_not_reply_email'] : (isset($company['email']) && $company['email'] ? $company['email'] : 'donotreply@minical.io');
+        $from_email = isset($whitelabelinfo['do_not_reply_email']) && $whitelabelinfo['do_not_reply_email'] ? $whitelabelinfo['do_not_reply_email'] : (isset($company['email']) && $company['email'] ? $company['email'] : 'donotreply@osgrandhorizon.io');
 
         $this->ci->email->from($from_email, $company['name']);
         $this->ci->email->to($email_list);
@@ -999,7 +999,7 @@ class Email_template {
 
         $whitelabelinfo = $this->ci->session->userdata('white_label_information');
 
-        $from_email = isset($whitelabelinfo['do_not_reply_email']) && $whitelabelinfo['do_not_reply_email'] ? $whitelabelinfo['do_not_reply_email'] : (isset($company['email']) && $company['email'] ? $company['email'] : 'donotreply@minical.io');
+        $from_email = isset($whitelabelinfo['do_not_reply_email']) && $whitelabelinfo['do_not_reply_email'] ? $whitelabelinfo['do_not_reply_email'] : (isset($company['email']) && $company['email'] ? $company['email'] : 'donotreply@osgrandhorizon.io');
 
         $this->ci->email->from($from_email, $company['name']);
         $this->ci->email->to($email_list);
@@ -1281,7 +1281,7 @@ class Email_template {
         
         $whitelabelinfo = $this->ci->session->userdata('white_label_information');
 
-        $from_email = isset($whitelabelinfo['do_not_reply_email']) && $whitelabelinfo['do_not_reply_email'] ? $whitelabelinfo['do_not_reply_email'] : 'donotreply@minical.io';
+        $from_email = isset($whitelabelinfo['do_not_reply_email']) && $whitelabelinfo['do_not_reply_email'] ? $whitelabelinfo['do_not_reply_email'] : 'donotreply@osgrandhorizon.io';
 
         $this->ci->email->from($from_email);
         $this->ci->email->to($email_list);
@@ -1351,7 +1351,7 @@ class Email_template {
 
         $whitelabelinfo = $this->ci->session->userdata('white_label_information');
 
-        $from_email = isset($whitelabelinfo['do_not_reply_email']) && $whitelabelinfo['do_not_reply_email'] ? $whitelabelinfo['do_not_reply_email'] : (isset($company['email']) && $company['email'] ? $company['email'] : 'donotreply@minical.io');
+        $from_email = isset($whitelabelinfo['do_not_reply_email']) && $whitelabelinfo['do_not_reply_email'] ? $whitelabelinfo['do_not_reply_email'] : (isset($company['email']) && $company['email'] ? $company['email'] : 'donotreply@osgrandhorizon.io');
 
         $this->ci->email->from($from_email, $company['name']);
         $this->ci->email->to($customer_email);
@@ -1428,7 +1428,7 @@ class Email_template {
 
             $whitelabelinfo = $this->ci->session->userdata('white_label_information');
 
-            $from_email = isset($whitelabelinfo['do_not_reply_email']) && $whitelabelinfo['do_not_reply_email'] ? $whitelabelinfo['do_not_reply_email'] : (isset($company['email']) && $company['email'] ? $company['email'] : 'donotreply@minical.io');
+            $from_email = isset($whitelabelinfo['do_not_reply_email']) && $whitelabelinfo['do_not_reply_email'] ? $whitelabelinfo['do_not_reply_email'] : (isset($company['email']) && $company['email'] ? $company['email'] : 'donotreply@osgrandhorizon.io');
 
             $this->ci->email->from($from_email, $company['name']);
             $this->ci->email->to($email_list);
@@ -1470,7 +1470,7 @@ class Email_template {
 
         $this->ci->email->from($from_email, $company['name']);
         $this->ci->email->to($customer_email);
-        $this->ci->email->bcc('support@minical.io');
+        $this->ci->email->bcc('support@osgrandhorizon.io');
 
         $this->ci->email->subject($data['company_name'] . ' wants to join ' . $data['partner_name'] . ' partner');
         $this->ci->email->message($this->ci->load->view('email/partner-contact-html', $data, true));

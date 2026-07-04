@@ -13,7 +13,7 @@
  *
  * This file should have no external dependencies.
  *
- * @package miniCal
+ * @package osGrandHorizon
  * @subpackage Plugin
  * @since 1.5.0
  */
@@ -21,33 +21,33 @@
 // Initialize the filter globals.
 require __DIR__ . '/extension_hooks.php';
 
-/** @var miniCal_Hook[] $miniCal_filter */
-global $miniCal_filter;
+/** @var osGrandHorizon_Hook[] $osGrandHorizon_filter */
+global $osGrandHorizon_filter;
 
-/** @var int[] $miniCal_actions */
-global $miniCal_actions;
+/** @var int[] $osGrandHorizon_actions */
+global $osGrandHorizon_actions;
 
-/** @var string[] $miniCal_current_filter */
-global $miniCal_current_filter;
+/** @var string[] $osGrandHorizon_current_filter */
+global $osGrandHorizon_current_filter;
 
-if ( $miniCal_filter ) {
-    $miniCal_filter = miniCal_Hook::build_preinitialized_hooks( $miniCal_filter );
+if ( $osGrandHorizon_filter ) {
+    $osGrandHorizon_filter = osGrandHorizon_Hook::build_preinitialized_hooks( $osGrandHorizon_filter );
 } else {
-    $miniCal_filter = array();
+    $osGrandHorizon_filter = array();
 }
 
-if ( ! isset( $miniCal_actions ) ) {
-    $miniCal_actions = array();
+if ( ! isset( $osGrandHorizon_actions ) ) {
+    $osGrandHorizon_actions = array();
 }
 
-if ( ! isset( $miniCal_current_filter ) ) {
-    $miniCal_current_filter = array();
+if ( ! isset( $osGrandHorizon_current_filter ) ) {
+    $osGrandHorizon_current_filter = array();
 }
 
 /**
  * Adds a callback function to a filter hook.
  *
- * miniCal offers filter hooks to allow plugins to modify
+ * osGrandHorizon offers filter hooks to allow plugins to modify
  * various types of internal data at runtime.
  *
  * A plugin can modify data by binding a callback to a filter hook. When the filter
@@ -96,7 +96,7 @@ if ( ! isset( $miniCal_current_filter ) ) {
  *
  * @since 0.71
  *
- * @global miniCal_Hook[] $miniCal_filter A multidimensional array of all hooks and the callbacks hooked to them.
+ * @global osGrandHorizon_Hook[] $osGrandHorizon_filter A multidimensional array of all hooks and the callbacks hooked to them.
  *
  * @param string   $hook_name     The name of the filter to add the callback to.
  * @param callable $callback      The callback to be run when the filter is applied.
@@ -109,13 +109,13 @@ if ( ! isset( $miniCal_current_filter ) ) {
  * @return true Always returns true.
  */
 function add_filter( $hook_name, $callback, $priority = 10, $accepted_args = 1 ) {
-    global $miniCal_filter;
+    global $osGrandHorizon_filter;
 
-    if ( ! isset( $miniCal_filter[ $hook_name ] ) ) {
-        $miniCal_filter[ $hook_name ] = new miniCal_Hook();
+    if ( ! isset( $osGrandHorizon_filter[ $hook_name ] ) ) {
+        $osGrandHorizon_filter[ $hook_name ] = new osGrandHorizon_Hook();
     }
 
-    $miniCal_filter[ $hook_name ]->add_filter( $hook_name, $callback, $priority, $accepted_args );
+    $osGrandHorizon_filter[ $hook_name ]->add_filter( $hook_name, $callback, $priority, $accepted_args );
 
     return true;
 }
@@ -149,8 +149,8 @@ function add_filter( $hook_name, $callback, $priority = 10, $accepted_args = 1 )
  *
  * @since 0.71
  *
- * @global miniCal_Hook[] $miniCal_filter         Stores all of the filters and actions.
- * @global string[]  $miniCal_current_filter Stores the list of current filters with the current one last.
+ * @global osGrandHorizon_Hook[] $osGrandHorizon_filter         Stores all of the filters and actions.
+ * @global string[]  $osGrandHorizon_current_filter Stores the list of current filters with the current one last.
  *
  * @param string $hook_name The name of the filter hook.
  * @param mixed  $value     The value to filter.
@@ -158,34 +158,34 @@ function add_filter( $hook_name, $callback, $priority = 10, $accepted_args = 1 )
  * @return mixed The filtered value after all hooked functions are applied to it.
  */
 function apply_filters( $hook_name, $value ) {
-    global $miniCal_filter, $miniCal_current_filter;
+    global $osGrandHorizon_filter, $osGrandHorizon_current_filter;
 
     $args = func_get_args();
 
     // Do 'all' actions first.
-    if ( isset( $miniCal_filter['all'] ) ) {
-        $miniCal_current_filter[] = $hook_name;
-        _miniCal_call_all_hook( $args );
+    if ( isset( $osGrandHorizon_filter['all'] ) ) {
+        $osGrandHorizon_current_filter[] = $hook_name;
+        _osGrandHorizon_call_all_hook( $args );
     }
 
-    if ( ! isset( $miniCal_filter[ $hook_name ] ) ) {
-        if ( isset( $miniCal_filter['all'] ) ) {
-            array_pop( $miniCal_current_filter );
+    if ( ! isset( $osGrandHorizon_filter[ $hook_name ] ) ) {
+        if ( isset( $osGrandHorizon_filter['all'] ) ) {
+            array_pop( $osGrandHorizon_current_filter );
         }
 
         return $value;
     }
 
-    if ( ! isset( $miniCal_filter['all'] ) ) {
-        $miniCal_current_filter[] = $hook_name;
+    if ( ! isset( $osGrandHorizon_filter['all'] ) ) {
+        $osGrandHorizon_current_filter[] = $hook_name;
     }
 
-    // Don't pass the tag name to miniCal_Hook.
+    // Don't pass the tag name to osGrandHorizon_Hook.
     array_shift( $args );
 
-    $filtered = $miniCal_filter[ $hook_name ]->apply_filters( $value, $args );
+    $filtered = $osGrandHorizon_filter[ $hook_name ]->apply_filters( $value, $args );
 
-    array_pop( $miniCal_current_filter );
+    array_pop( $osGrandHorizon_current_filter );
 
     return $filtered;
 }
@@ -198,7 +198,7 @@ function apply_filters( $hook_name, $value ) {
  *
  * @since 2.5.0
  *
- * @global miniCal_Hook[] $miniCal_filter Stores all of the filters and actions.
+ * @global osGrandHorizon_Hook[] $osGrandHorizon_filter Stores all of the filters and actions.
  *
  * @param string         $hook_name The name of the filter hook.
  * @param callable|false $callback  Optional. The callback to check for. Default false.
@@ -207,13 +207,13 @@ function apply_filters( $hook_name, $value ) {
  *                  of that hook is returned, or false if the function is not attached.
  */
 function has_filter( $hook_name, $callback = false ) {
-    global $miniCal_filter;
+    global $osGrandHorizon_filter;
 
-    if ( ! isset( $miniCal_filter[ $hook_name ] ) ) {
+    if ( ! isset( $osGrandHorizon_filter[ $hook_name ] ) ) {
         return false;
     }
 
-    return $miniCal_filter[ $hook_name ]->has_filter( $hook_name, $callback );
+    return $osGrandHorizon_filter[ $hook_name ]->has_filter( $hook_name, $callback );
 }
 
 /**
@@ -228,7 +228,7 @@ function has_filter( $hook_name, $callback = false ) {
  *
  * @since 1.2.0
  *
- * @global miniCal_Hook[] $miniCal_filter Stores all of the filters and actions.
+ * @global osGrandHorizon_Hook[] $osGrandHorizon_filter Stores all of the filters and actions.
  *
  * @param string   $hook_name The filter hook to which the function to be removed is hooked.
  * @param callable $callback  The name of the function which should be removed.
@@ -237,15 +237,15 @@ function has_filter( $hook_name, $callback = false ) {
  * @return bool Whether the function existed before it was removed.
  */
 function remove_filter( $hook_name, $callback, $priority = 10 ) {
-    global $miniCal_filter;
+    global $osGrandHorizon_filter;
 
     $r = false;
 
-    if ( isset( $miniCal_filter[ $hook_name ] ) ) {
-        $r = $miniCal_filter[ $hook_name ]->remove_filter( $hook_name, $callback, $priority );
+    if ( isset( $osGrandHorizon_filter[ $hook_name ] ) ) {
+        $r = $osGrandHorizon_filter[ $hook_name ]->remove_filter( $hook_name, $callback, $priority );
 
-        if ( ! $miniCal_filter[ $hook_name ]->callbacks ) {
-            unset( $miniCal_filter[ $hook_name ] );
+        if ( ! $osGrandHorizon_filter[ $hook_name ]->callbacks ) {
+            unset( $osGrandHorizon_filter[ $hook_name ] );
         }
     }
 
@@ -257,7 +257,7 @@ function remove_filter( $hook_name, $callback, $priority = 10 ) {
  *
  * @since 2.7.0
  *
- * @global miniCal_Hook[] $miniCal_filter Stores all of the filters and actions.
+ * @global osGrandHorizon_Hook[] $osGrandHorizon_filter Stores all of the filters and actions.
  *
  * @param string    $hook_name The filter to remove callbacks from.
  * @param int|false $priority  Optional. The priority number to remove them from.
@@ -265,13 +265,13 @@ function remove_filter( $hook_name, $callback, $priority = 10 ) {
  * @return true Always returns true.
  */
 function remove_all_filters( $hook_name, $priority = false ) {
-    global $miniCal_filter;
+    global $osGrandHorizon_filter;
 
-    if ( isset( $miniCal_filter[ $hook_name ] ) ) {
-        $miniCal_filter[ $hook_name ]->remove_all_filters( $priority );
+    if ( isset( $osGrandHorizon_filter[ $hook_name ] ) ) {
+        $osGrandHorizon_filter[ $hook_name ]->remove_all_filters( $priority );
 
-        if ( ! $miniCal_filter[ $hook_name ]->has_filters() ) {
-            unset( $miniCal_filter[ $hook_name ] );
+        if ( ! $osGrandHorizon_filter[ $hook_name ]->has_filters() ) {
+            unset( $osGrandHorizon_filter[ $hook_name ] );
         }
     }
 
@@ -281,7 +281,7 @@ function remove_all_filters( $hook_name, $priority = false ) {
 /**
  * Adds a callback function to an action hook.
  *
- * Actions are the hooks that the miniCal core launches at specific points
+ * Actions are the hooks that the osGrandHorizon core launches at specific points
  * during execution, or when specific events occur. Plugins can specify that
  * one or more of its PHP functions are executed at these points, using the
  * Action API.
@@ -331,40 +331,40 @@ function add_action( $hook_name, $callback, $priority = 10, $accepted_args = 1 )
  * @since 5.3.0 Formalized the existing and already documented `...$arg` parameter
  *              by adding it to the function signature.
  *
- * @global miniCal_Hook[] $miniCal_filter         Stores all of the filters and actions.
- * @global int[]     $miniCal_actions        Stores the number of times each action was triggered.
- * @global string[]  $miniCal_current_filter Stores the list of current filters with the current one last.
+ * @global osGrandHorizon_Hook[] $osGrandHorizon_filter         Stores all of the filters and actions.
+ * @global int[]     $osGrandHorizon_actions        Stores the number of times each action was triggered.
+ * @global string[]  $osGrandHorizon_current_filter Stores the list of current filters with the current one last.
  *
  * @param string $hook_name The name of the action to be executed.
  * @param mixed  ...$arg    Optional. Additional arguments which are passed on to the
  *                          functions hooked to the action. Default empty.
  */
 function do_action( $hook_name, ...$arg ) {
-    global $miniCal_filter, $miniCal_actions, $miniCal_current_filter;
+    global $osGrandHorizon_filter, $osGrandHorizon_actions, $osGrandHorizon_current_filter;
 
-    if ( ! isset( $miniCal_actions[ $hook_name ] ) ) {
-        $miniCal_actions[ $hook_name ] = 1;
+    if ( ! isset( $osGrandHorizon_actions[ $hook_name ] ) ) {
+        $osGrandHorizon_actions[ $hook_name ] = 1;
     } else {
-        ++$miniCal_actions[ $hook_name ];
+        ++$osGrandHorizon_actions[ $hook_name ];
     }
 
     // Do 'all' actions first.
-    if ( isset( $miniCal_filter['all'] ) ) {
-        $miniCal_current_filter[] = $hook_name;
+    if ( isset( $osGrandHorizon_filter['all'] ) ) {
+        $osGrandHorizon_current_filter[] = $hook_name;
         $all_args            = func_get_args(); // phpcs:ignore PHPCompatibility.FunctionUse.ArgumentFunctionsReportCurrentValue.NeedsInspection
-        _miniCal_call_all_hook( $all_args );
+        _osGrandHorizon_call_all_hook( $all_args );
     }
 
-    if ( ! isset( $miniCal_filter[ $hook_name ] ) ) {
-        if ( isset( $miniCal_filter['all'] ) ) {
-            array_pop( $miniCal_current_filter );
+    if ( ! isset( $osGrandHorizon_filter[ $hook_name ] ) ) {
+        if ( isset( $osGrandHorizon_filter['all'] ) ) {
+            array_pop( $osGrandHorizon_current_filter );
         }
 
         return;
     }
 
-    if ( ! isset( $miniCal_filter['all'] ) ) {
-        $miniCal_current_filter[] = $hook_name;
+    if ( ! isset( $osGrandHorizon_filter['all'] ) ) {
+        $osGrandHorizon_current_filter[] = $hook_name;
     }
 
     if ( empty( $arg ) ) {
@@ -374,9 +374,9 @@ function do_action( $hook_name, ...$arg ) {
         $arg[0] = $arg[0][0];
     }
 
-    $miniCal_filter[ $hook_name ]->do_action( $arg );
+    $osGrandHorizon_filter[ $hook_name ]->do_action( $arg );
 
-    array_pop( $miniCal_current_filter );
+    array_pop( $osGrandHorizon_current_filter );
 }
 
 /**
@@ -446,27 +446,27 @@ function remove_all_actions( $hook_name, $priority = false ) {
  *
  * @since 1.5.0
  *
- * @global array $miniCal_plugin_paths
+ * @global array $osGrandHorizon_plugin_paths
  *
  * @param string $file The filename of plugin.
  * @return string The name of a plugin.
  */
 function plugin_basename( $file ) {
-    global $miniCal_plugin_paths;
+    global $osGrandHorizon_plugin_paths;
 
-    // $miniCal_plugin_paths contains normalized paths.
-    $file = miniCal_normalize_path( $file );
+    // $osGrandHorizon_plugin_paths contains normalized paths.
+    $file = osGrandHorizon_normalize_path( $file );
 
-    arsort( $miniCal_plugin_paths );
+    arsort( $osGrandHorizon_plugin_paths );
 
-    foreach ( $miniCal_plugin_paths as $dir => $realdir ) {
+    foreach ( $osGrandHorizon_plugin_paths as $dir => $realdir ) {
         if ( strpos( $file, $realdir ) === 0 ) {
             $file = $dir . substr( $file, strlen( $realdir ) );
         }
     }
 
-    $plugin_dir    = miniCal_normalize_path( MINICAL_PLUGIN_DIR );
-    $mu_plugin_dir = miniCal_normalize_path( MINICALMU_PLUGIN_DIR );
+    $plugin_dir    = osGrandHorizon_normalize_path( OSGRANDHORIZON_PLUGIN_DIR );
+    $mu_plugin_dir = osGrandHorizon_normalize_path( OSGRANDHORIZONMU_PLUGIN_DIR );
 
     // Get relative path from plugins directory.
     $file = preg_replace( '#^' . preg_quote( $plugin_dir, '#' ) . '/|^' . preg_quote( $mu_plugin_dir, '#' ) . '/#', '', $file );
@@ -498,7 +498,7 @@ function plugin_dir_url( $file ) {
     return trailingslashit( plugins_url( '', $file ) );
 }
 
-function _miniCal_filter_build_unique_id( $tag, $function, $priority ) {
+function _osGrandHorizon_filter_build_unique_id( $tag, $function, $priority ) {
     if ( is_string( $function ) ) {
         return $function;
     }
@@ -527,16 +527,16 @@ function untrailingslashit( $string ) {
     return rtrim( $string, '/\\' );
 }
 
-function _miniCal_call_all_hook( $args ) {
-    global $miniCal_filter;
+function _osGrandHorizon_call_all_hook( $args ) {
+    global $osGrandHorizon_filter;
 
-    $miniCal_filter['all']->do_all_hook( $args );
+    $osGrandHorizon_filter['all']->do_all_hook( $args );
 }
 
-function miniCal_normalize_path( $path ) {
+function osGrandHorizon_normalize_path( $path ) {
     $wrapper = '';
 
-    if ( miniCal_is_stream( $path ) ) {
+    if ( osGrandHorizon_is_stream( $path ) ) {
         list( $wrapper, $path ) = explode( '://', $path, 2 );
 
         $wrapper .= '://';
@@ -556,7 +556,7 @@ function miniCal_normalize_path( $path ) {
     return $wrapper . $path;
 }
 
-function miniCal_is_stream( $path ) {
+function osGrandHorizon_is_stream( $path ) {
     $scheme_separator = strpos( $path, '://' );
 
     if ( false === $scheme_separator ) {
@@ -571,14 +571,14 @@ function miniCal_is_stream( $path ) {
 
 function plugins_url( $path = '', $plugin = '' ) {
 
-    $path          = miniCal_normalize_path( $path );
-    $plugin        = miniCal_normalize_path( $plugin );
-    $mu_plugin_dir = miniCal_normalize_path( miniCalMU_PLUGIN_DIR );
+    $path          = osGrandHorizon_normalize_path( $path );
+    $plugin        = osGrandHorizon_normalize_path( $plugin );
+    $mu_plugin_dir = osGrandHorizon_normalize_path( osGrandHorizonMU_PLUGIN_DIR );
 
     if ( ! empty( $plugin ) && 0 === strpos( $plugin, $mu_plugin_dir ) ) {
-        $url = miniCalMU_PLUGIN_URL;
+        $url = osGrandHorizonMU_PLUGIN_URL;
     } else {
-        $url = miniCal_PLUGIN_URL;
+        $url = osGrandHorizon_PLUGIN_URL;
     }
 
     $url = set_url_scheme( $url );

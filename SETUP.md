@@ -1,6 +1,6 @@
-# SETUP.md — Running miniCal locally (verified working steps)
+# SETUP.md — Running OS Grand Horizon locally (verified working steps)
 
-This documents the exact steps used to get the upstream miniCal PMS running
+This documents the exact steps used to get the upstream OS Grand Horizon PMS running
 locally via Docker on 2026-07-04, including three upstream bugs that had to be
 patched to make `composer install` and the install wizard actually work.
 Stack confirmed: **PHP (CodeIgniter 3 + wiredesignz MX/HMVC), MySQL-compatible
@@ -51,8 +51,8 @@ None of these touch application/business logic — only build/dependency plumbin
 cp docker/.env.example .env
 ```
 
-Uses `DATABASE_HOST=db`, `DATABASE_USER=root`, `DATABASE_PASS=MiniCalPwd`,
-`DATABASE_NAME=minical`, `PROJECT_URL=http://localhost:8080/public`,
+Uses `DATABASE_HOST=db`, `DATABASE_USER=root`, `DATABASE_PASS=OSGrandHorizonPwd`,
+`DATABASE_NAME=osgrandhorizon`, `PROJECT_URL=http://localhost:8080/public`,
 `API_URL=http://web/api`. Adjust `PROJECT_URL`/`API_URL` if not running on
 `localhost` (the docker README notes this matters for the app's internal API
 calls, e.g. Room Inventory).
@@ -74,7 +74,7 @@ the `rinvex/countries` entry in `composer.json` and is out of sync.
 
 ## 3. Create the database schema (CodeIgniter migrations)
 
-The install wizard's "seed" step (`public/install/minical-seed.sql`) is
+The install wizard's "seed" step (`public/install/osgrandhorizon-seed.sql`) is
 **data-only** (currencies, lookups, etc.) — it contains zero `CREATE TABLE`
 statements and assumes the schema already exists. The schema itself comes
 from `public/application/migrations/001_create_base.php`, run through CI's
@@ -94,11 +94,11 @@ This creates all 112 core tables.
 
 ```bash
 curl -X POST http://localhost:8080/public/install/db_verification.php   # sanity check, DB connectivity
-curl -X POST http://localhost:8080/public/install/database_seeding.php  # imports minical-seed.sql (currencies etc.)
+curl -X POST http://localhost:8080/public/install/database_seeding.php  # imports osgrandhorizon-seed.sql (currencies etc.)
 ```
 
 `database_seeding.php` processes the ~1MB seed file in time-boxed chunks
-(3s/request) and tracks progress in a `minical_installation_meta` table; call
+(3s/request) and tracks progress in a `osgrandhorizon_installation_meta` table; call
 it repeatedly until the JSON response contains `"success":true`. In practice
 it completed in a single call against the local MariaDB container.
 
@@ -171,9 +171,35 @@ curl http://localhost:8080/public/panther_audit_log        # 200
 
 ## Useful side tools
 
-- phpMyAdmin: `http://localhost:8888` (user `root`, pass `MiniCalPwd`, or
-  `minical`/`MiniCalPwd`).
-- Direct DB shell: `docker exec -it docker-db-1 mariadb -uroot -pMiniCalPwd minical`.
+- phpMyAdmin: `http://localhost:8888` (user `root`, pass `OSGrandHorizonPwd`, or
+  `osgrandhorizon`/`OSGrandHorizonPwd`).
+- Direct DB shell: `docker exec -it docker-db-1 mariadb -uroot -pOSGrandHorizonPwd osgrandhorizon`.
+
+## Rebranding notes (Minical → OS Grand Horizon)
+
+All "Minical" branding was removed from display text, code identifiers,
+filenames, and DB-seeded content, and replaced with "OS Grand Horizon" (see
+CHANGELOG.md for the full breakdown). Two DB-level things aren't captured by
+a simple file diff, in case you're setting this up fresh from the seed SQL
+rather than inheriting an already-migrated database:
+
+- `whitelabel_partner` id=0's `name`/`username`/`logo` columns are seeded data
+  (from `osgrandhorizon-seed.sql`, née `minical-seed.sql`) — this build fixed
+  the live row directly via SQL rather than the seed file (the seed file's
+  raw bytes are unchanged upstream data).
+- `config/config.php` now defines `$config['branding_name'] = 'OS Grand Horizon'`
+  — this key was referenced in 6 view files (login/register headers, browser
+  title fallback, the online booking template) but was never actually
+  defined anywhere upstream, so it silently rendered blank. Defining it here
+  both fixes a latent upstream bug and applies our branding in the one place
+  the app already intended for exactly this.
+- If you rename the database itself (as this build did, `minical` →
+  `osgrandhorizon`), remember MariaDB has no `RENAME DATABASE` — use
+  `RENAME TABLE minical.\`t\` TO osgrandhorizon.\`t\`` per table (or dump/restore),
+  and separately `ALTER USER 'root'@'%'`/`'root'@'localhost' IDENTIFIED BY '...'`
+  if you also change `DATABASE_PASS` — the MariaDB volume persists the
+  original password from first container init regardless of what
+  `docker-compose.yaml`'s `MYSQL_ROOT_PASSWORD` says on a later run.
 
 ## Tearing down / resetting
 

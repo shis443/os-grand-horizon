@@ -33,10 +33,11 @@ $ENVIRONMENT = $ENVIRONMENT ? $ENVIRONMENT : 'production';
 $config['app_environment'] = $ENVIRONMENT;
 $config['base_url']	= getenv('PROJECT_URL');
 $config['api_url']	= getenv('API_URL');
+$config['branding_name'] = 'OS Grand Horizon';
 
 $is_hosted_prod_service = getenv('IS_HOSTED_PROD_SERVICE');
 
-if ($is_hosted_prod_service && $_SERVER['HTTP_HOST'] !== "app.minical.io") {
+if ($is_hosted_prod_service && $_SERVER['HTTP_HOST'] !== "app.osgrandhorizon.io") {
     $config['base_url'] = $protocol . $_SERVER['HTTP_HOST'];
 }
 

@@ -375,7 +375,7 @@ $(function() {
 
 	
 
-	// don't collapse the invoice if the customer is staying for over 90 days. otherwise Minical crashes.
+	// don't collapse the invoice if the customer is staying for over 90 days. otherwise OS Grand Horizon crashes.
 	var getNumberOfDays = innGrid.getNumberOfDays()
     if ($(".charge_row").length < 60)
 	{

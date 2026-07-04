@@ -45,7 +45,7 @@
    
      $time = time() ;
      $year= date("Y",$time);
-     echo isset($whitelabelinfo['name']) && $whitelabelinfo['name'] ? $whitelabelinfo['name']." &copy; " . $year ."  " : "Minical Inc."." &copy; " . $year ."  ";
+     echo isset($whitelabelinfo['name']) && $whitelabelinfo['name'] ? $whitelabelinfo['name']." &copy; " . $year ."  " : "OS Grand Horizon Inc."." &copy; " . $year ."  ";
     ?>
 
     <?php  //if(check_active_extensions('terms_and_privacy', $this->company_id)){

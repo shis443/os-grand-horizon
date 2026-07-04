@@ -19,8 +19,8 @@ and open the template in the editor.
 <div id="policy" class="content">
 	<div class="text">
 
-		<h1>Minical Inc. Privacy Policy</h1>
-		This Privacy Policy governs the manner in which Minical Inc. collects, uses, maintains and discloses information collected from users (each, a "User") of the <a href="www.minical.io">www.minical.io</a> website ("Site") and its subdomains. This privacy policy applies to the Site and all products and services offered by Minical Inc..<br><br>
+		<h1>OS Grand Horizon Inc. Privacy Policy</h1>
+		This Privacy Policy governs the manner in which OS Grand Horizon Inc. collects, uses, maintains and discloses information collected from users (each, a "User") of the <a href="www.osgrandhorizon.io">www.osgrandhorizon.io</a> website ("Site") and its subdomains. This privacy policy applies to the Site and all products and services offered by OS Grand Horizon Inc..<br><br>
 
 		<b>Personal identification information</b><br><br>
 		<p>
@@ -42,7 +42,7 @@ and open the template in the editor.
 
 		<b>How we use collected information</b><br><br>
 		<p>
-			Minical Inc. may collect and use Users personal information for the following purposes:<br>
+			OS Grand Horizon Inc. may collect and use Users personal information for the following purposes:<br>
 			
 			<ul style="margin-left:50px">
 			<li><b>To improve customer service</i></b>
@@ -94,8 +94,8 @@ and open the template in the editor.
 
 		<b>Legal Basis for Processing Personal Data Under General Data Protection Regulation (GDPR)</b><br/><br/>
 		<p>
-			If you are from the European Economic Area (EEA), Minical Inc. legal basis for collecting and using the personal information described in this Privacy Policy depends on the Personal Data we collect and the specific context in which we collect it. <br/><br/>
-			Minical Inc. may process your Personal Data because:<br/>
+			If you are from the European Economic Area (EEA), OS Grand Horizon Inc. legal basis for collecting and using the personal information described in this Privacy Policy depends on the Personal Data we collect and the specific context in which we collect it. <br/><br/>
+			OS Grand Horizon Inc. may process your Personal Data because:<br/>
 			<ul style="margin-left:50px">
 				<li>We need to perform a contract with you</li>
 				<li>You have given us permission to do so</li>
@@ -108,7 +108,7 @@ and open the template in the editor.
 
 	<b>Your Data Protection Rights Under General Data Protection Regulation (GDPR)</b><br/><br/>
 	<p>
-	If you are a resident of the European Economic Area (EEA), you have certain data protection rights. Minical Inc. aims to take reasonable steps to allow you to correct, amend, delete, or limit the use of your Personal Data.
+	If you are a resident of the European Economic Area (EEA), you have certain data protection rights. OS Grand Horizon Inc. aims to take reasonable steps to allow you to correct, amend, delete, or limit the use of your Personal Data.
 	If you wish to be informed what Personal Data we hold about you and if you want it to be removed from our systems, please contact us.
 	In certain circumstances, you have the following data protection rights:
 	<ul style="margin-left:50px">
@@ -123,7 +123,7 @@ and open the template in the editor.
 
 		<li><b>The right to data </b>portability. You have the right to be provided with a copy of the information we have on you in a structured, machine-readable and commonly used format.</li>
 
-		<li><b>The right to withdraw </b>consent. You also have the right to withdraw your consent at any time where Minical Inc. relied on your consent to process your personal information.</li>
+		<li><b>The right to withdraw </b>consent. You also have the right to withdraw your consent at any time where OS Grand Horizon Inc. relied on your consent to process your personal information.</li>
 	</ul>
 
 	<p>
@@ -134,7 +134,7 @@ and open the template in the editor.
 	</p>
 		<b>Changes to this privacy policy</b><br><br>
 	<p>
-		Minical Inc. has the discretion to update this privacy policy at any time. When we do, we will post a notification on the main page of our Site. We encourage Users to frequently check this page for any changes to stay informed about how we are helping to protect the personal information we collect. You acknowledge and agree that it is your responsibility to review this privacy policy periodically and become aware of modifications.<br><br>
+		OS Grand Horizon Inc. has the discretion to update this privacy policy at any time. When we do, we will post a notification on the main page of our Site. We encourage Users to frequently check this page for any changes to stay informed about how we are helping to protect the personal information we collect. You acknowledge and agree that it is your responsibility to review this privacy policy periodically and become aware of modifications.<br><br>
 	</p>
 
 
@@ -148,8 +148,8 @@ and open the template in the editor.
 	<p>
 		If you have any questions about this Privacy Policy, the practices of this site, or your dealings with this site, please contact us at:<br>
 		
-		<a href="www.minical.io">Minical Inc.</a><br>
-		<a href="www.minical.io">www.minical.io</a><br>
+		<a href="www.osgrandhorizon.io">OS Grand Horizon Inc.</a><br>
+		<a href="www.osgrandhorizon.io">www.osgrandhorizon.io</a><br>
 		
 		Phone: 1-403-879-1166
 		Address: PO Box 57347 Blue Mountain PO, Coquitlam, BC, Canada

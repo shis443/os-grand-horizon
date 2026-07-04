@@ -218,7 +218,7 @@ $('.manage-agoda-channel').on("click", function() {
 
 $(function(){
     if($(".integrations").length > 0 && $(".integrations").attr('integrations_enabled') != 1){
-        //alert("OTA integration is available for our Premium subscribers. \n\nIf you are interested in integrating your OTA(Expedia, Booking.com etc.) rates and reservations with Minical contact us at support@minical.io");
+        //alert("OTA integration is available for our Premium subscribers. \n\nIf you are interested in integrating your OTA(Expedia, Booking.com etc.) rates and reservations with OS Grand Horizon contact us at support@osgrandhorizon.io");
     }
 	
 	displayRelatedRatePlansMyallcator();

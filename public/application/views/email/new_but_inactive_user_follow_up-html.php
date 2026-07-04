@@ -382,11 +382,11 @@
 																<br/>
 																<strong>Jaeyun Noh</strong>
 																<br/>
-																Founder, Minical Inc.
+																Founder, OS Grand Horizon Inc.
 																<br/><br/>
 																Phone: +1 (403) 708 0563
 																<br/>
-																Email: jaeyun@minical.io
+																Email: jaeyun@osgrandhorizon.io
 																<br/>
 																
 																

@@ -58,7 +58,7 @@ class App_state_model extends CI_Model {
 		$this->update($company_id, array('lang' => $lang));
 	}
 
-	/** Read miniCal's own business-date override — this IS the simulator date. */
+	/** Read osGrandHorizon's own business-date override — this IS the simulator date. */
 	public function get_simulator_date($company_id)
 	{
 		$row = $this->db->select('selling_date')->get_where('company', array('company_id' => $company_id))->row_array();

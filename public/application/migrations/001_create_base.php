@@ -3888,7 +3888,7 @@ class Migration_create_base extends CI_Migration {
 		$this->dbforge->create_table("menu", TRUE);
 		$this->db->query('ALTER TABLE  `menu` ENGINE = InnoDB');
 
-		## Create Table minical_installation_meta
+		## Create Table osgrandhorizon_installation_meta
 		$this->dbforge->add_field(array(
 			'pointer' => array(
 				'type' => 'BIGINT',
@@ -3903,8 +3903,8 @@ class Migration_create_base extends CI_Migration {
 			),
 		));
 
-		$this->dbforge->create_table("minical_installation_meta", TRUE);
-		$this->db->query('ALTER TABLE  `minical_installation_meta` ENGINE = InnoDB');
+		$this->dbforge->create_table("osgrandhorizon_installation_meta", TRUE);
+		$this->db->query('ALTER TABLE  `osgrandhorizon_installation_meta` ENGINE = InnoDB');
 
 		## Create Table night_audit_log
 		$this->dbforge->add_field(array(
@@ -4155,7 +4155,7 @@ class Migration_create_base extends CI_Migration {
 				'null' => TRUE,
 
 			),
-			'minical_rate_plan_id' => array(
+			'osgrandhorizon_rate_plan_id' => array(
 				'type' => 'BIGINT',
 				'constraint' => 20,
 				'null' => TRUE,
@@ -4198,7 +4198,7 @@ class Migration_create_base extends CI_Migration {
 				'null' => FALSE,
 
 			),
-			'minical_room_type_id' => array(
+			'osgrandhorizon_room_type_id' => array(
 				'type' => 'BIGINT',
 				'constraint' => 20,
 				'null' => TRUE,
@@ -6126,8 +6126,8 @@ class Migration_create_base extends CI_Migration {
 		$this->dbforge->drop_table("login_attempt", TRUE);
 		### Drop table menu ##
 		$this->dbforge->drop_table("menu", TRUE);
-		### Drop table minical_installation_meta ##
-		$this->dbforge->drop_table("minical_installation_meta", TRUE);
+		### Drop table osgrandhorizon_installation_meta ##
+		$this->dbforge->drop_table("osgrandhorizon_installation_meta", TRUE);
 		### Drop table night_audit_log ##
 		$this->dbforge->drop_table("night_audit_log", TRUE);
 		### Drop table online_booking_engine_field ##

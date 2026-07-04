@@ -4,7 +4,7 @@
 //returns baseURL
 var getBaseURL = function () {
 	var url = $('#project_url').val();
-	url = url ? url : 'app.minical.io';
+	url = url ? url : 'app.osgrandhorizon.io';
 	if (url.substring(url.length - 1) !== "/") {
 		url = url + '/';
 	}

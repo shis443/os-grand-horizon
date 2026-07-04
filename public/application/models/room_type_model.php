@@ -261,7 +261,7 @@ class Room_type_model extends CI_Model {
     // used for online reservation
 
     /*
-        Eventually replace this with Minical API's availability
+        Eventually replace this with OS Grand Horizon API's availability
     */
 
     function get_room_type_max_availability($company_id, $channel, $start_date, $end_date)

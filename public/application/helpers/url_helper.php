@@ -604,7 +604,7 @@ if ( ! function_exists('auto_version'))
 	{
 		//Define the proper DOCUMENT_ROOT
         $is_hosted_prod_service = getenv('IS_HOSTED_PROD_SERVICE');
-		if ($is_hosted_prod_service || $_SERVER['HTTP_HOST'] === 'app.minical.io' || $_SERVER['HTTP_HOST'] === 'demo.minical.io') {
+		if ($is_hosted_prod_service || $_SERVER['HTTP_HOST'] === 'app.osgrandhorizon.io' || $_SERVER['HTTP_HOST'] === 'demo.osgrandhorizon.io') {
             $mtime = filemtime($_SERVER['DOCUMENT_ROOT'] . '/'. $file);
             return preg_replace('{\\.([^./]+)$}', ".$mtime.\$1", $file);
 		} else {

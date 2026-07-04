@@ -30,7 +30,7 @@ class Extensions extends MY_Controller
                 }
             }
         }
-        if($this->user_email !='support@minical.io'){
+        if($this->user_email !='support@osgrandhorizon.io'){
             foreach ($all_active_modules as $key => $value) {
                  if(
                     isset($value['is_super_admin_module']) &&
@@ -67,7 +67,7 @@ class Extensions extends MY_Controller
         $i = 0;
         $is_hosted_prod_service = getenv('IS_HOSTED_PROD_SERVICE');
 
-        if($is_hosted_prod_service || $_SERVER['HTTP_HOST'] == "app.minical.io" || $_SERVER['HTTP_HOST'] == "demo.minical.io"){
+        if($is_hosted_prod_service || $_SERVER['HTTP_HOST'] == "app.osgrandhorizon.io" || $_SERVER['HTTP_HOST'] == "demo.osgrandhorizon.io"){
 
             if($extensions && count($extensions) > 0) {
                 foreach ($extensions as $e => $ext) {
@@ -143,7 +143,7 @@ class Extensions extends MY_Controller
             }
             $is_hosted_prod_service = getenv('IS_HOSTED_PROD_SERVICE');
 
-            if($is_hosted_prod_service && $_SERVER['HTTP_HOST'] != "app.minical.io" && $_SERVER['HTTP_HOST'] != "demo.minical.io"){
+            if($is_hosted_prod_service && $_SERVER['HTTP_HOST'] != "app.osgrandhorizon.io" && $_SERVER['HTTP_HOST'] != "demo.osgrandhorizon.io"){
                 if($flag){
                     $module['is_active'] = 0;
                     $module['company_id'] = $this->company_id;
@@ -377,7 +377,7 @@ class Extensions extends MY_Controller
             }
         }
 
-        if($this->user_email !='support@minical.io'){
+        if($this->user_email !='support@osgrandhorizon.io'){
             foreach ($all_active_modules as $key => $value) {
                  if(
                     isset($value['is_super_admin_module']) &&
@@ -563,7 +563,7 @@ class Extensions extends MY_Controller
             }
         }
 
-        if($this->user_email !='support@minical.io'){
+        if($this->user_email !='support@osgrandhorizon.io'){
             foreach ($all_active_modules as $key => $value) {
                  if(
                     isset($value['is_super_admin_module']) &&

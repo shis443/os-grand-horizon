@@ -111,7 +111,7 @@ class Invoice extends MY_Controller {
 
     /**
      *
-     * shows invoice form for either: Minical users to modify/print invoice OR guests to view their invoice
+     * shows invoice form for either: OS Grand Horizon users to modify/print invoice OR guests to view their invoice
      *
      * I decided to go with html e-mail approach because
      * 1. It is pain in the ass to convert our css+html email to HTML email friendly 3D style format

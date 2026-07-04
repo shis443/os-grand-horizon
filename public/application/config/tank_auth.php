@@ -6,8 +6,8 @@
 | These details are used in emails sent by authentication library.
 |--------------------------------------------------------------------------
 */
-$config['website_name'] = 'Minical';
-$config['webmaster_email'] = 'support@minical.io';
+$config['website_name'] = 'OS Grand Horizon';
+$config['webmaster_email'] = 'support@osgrandhorizon.io';
 /*
 |--------------------------------------------------------------------------
 | Security settings

@@ -20,7 +20,7 @@
  * 3b) To migrate to specific version
  * Open console - php index.php migrate ver 1
  *
- * To execute in browser minical.io/migrate
+ * To execute in browser osgrandhorizon.io/migrate
  *
  * @property CI_Migration migration
  */

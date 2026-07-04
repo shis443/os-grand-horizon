@@ -51,10 +51,10 @@ class Roomsy_migration extends MY_Controller
 
     function index()
     {
-        $this->minical_import();
+        $this->osgrandhorizon_import();
     }
 
-    function minical_import()
+    function osgrandhorizon_import()
     {
         $data['company_ID'] = $this->company_id;
         $data['selected_sidebar_link'] = 'Import';

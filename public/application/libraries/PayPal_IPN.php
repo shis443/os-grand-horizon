@@ -70,7 +70,7 @@ class PayPal_IPN
     private $is_live; // The flag used to indicate we are operating in the live environment
     private $ipn_url; // The PayPal IPN URL we're using
     private $merchant_email; // The merchant's email address connected to PayPal
-	private $company_id; // Minical company ID
+	private $company_id; // OS Grand Horizon company ID
 	
     // Used for logging
     private $logID; // The ID of our IpnLog record

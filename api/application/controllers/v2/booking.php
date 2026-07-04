@@ -2087,7 +2087,7 @@ class Booking extends MY_Controller
     {
         $date_ranges = array();
         switch ($ota_id) {
-            case SOURCE_ONLINE_WIDGET: // Minical's Online Booking Engine
+            case SOURCE_ONLINE_WIDGET: // OS Grand Horizon's Online Booking Engine
                 $date_ranges = $this->get_array_with_range_of_dates_iso8601($changes, FALSE);break;
             case SOURCE_BOOKING_DOT_COM: // Booking.com
                 $date_ranges = $this->get_array_with_range_of_dates_iso8601($changes, FALSE);break;

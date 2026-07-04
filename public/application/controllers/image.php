@@ -62,7 +62,7 @@ class Image extends MY_Controller
 
 	/**
 	* This is where image gets cropped via Croppic javascript, then
-	* gets uploaded to Amazon S3. Also updated into minical DB's images table.
+	* gets uploaded to Amazon S3. Also updated into osgrandhorizon DB's images table.
 	*/
 
 	// Image compression using Imagick

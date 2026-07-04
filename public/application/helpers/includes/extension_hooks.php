@@ -1,8 +1,8 @@
 <?php
 /**
- * Plugin API: miniCal_Hook class
+ * Plugin API: osGrandHorizon_Hook class
  *
- * @package miniCal
+ * @package osGrandHorizon
  * @subpackage Plugin
  * @since 4.7.0
  */
@@ -15,7 +15,7 @@
  * @see Iterator
  * @see ArrayAccess
  */
-final class miniCal_Hook implements Iterator, ArrayAccess {
+final class osGrandHorizon_Hook implements Iterator, ArrayAccess {
 
     /**
      * Hook callbacks.
@@ -71,7 +71,7 @@ final class miniCal_Hook implements Iterator, ArrayAccess {
      * @param int      $accepted_args The number of arguments the function accepts.
      */
     public function add_filter( $hook_name, $callback, $priority, $accepted_args ) {
-        $idx = _miniCal_filter_build_unique_id( $hook_name, $callback, $priority );
+        $idx = _osGrandHorizon_filter_build_unique_id( $hook_name, $callback, $priority );
 
         $priority_existed = isset( $this->callbacks[ $priority ] );
 
@@ -174,7 +174,7 @@ final class miniCal_Hook implements Iterator, ArrayAccess {
      * @return bool Whether the callback existed before it was removed.
      */
     public function remove_filter( $hook_name, $callback, $priority ) {
-        $function_key = _miniCal_filter_build_unique_id( $hook_name, $callback, $priority );
+        $function_key = _osGrandHorizon_filter_build_unique_id( $hook_name, $callback, $priority );
 
         $exists = isset( $this->callbacks[ $priority ][ $function_key ] );
 
@@ -212,7 +212,7 @@ final class miniCal_Hook implements Iterator, ArrayAccess {
             return $this->has_filters();
         }
 
-        $function_key = _miniCal_filter_build_unique_id( $hook_name, $callback, false );
+        $function_key = _osGrandHorizon_filter_build_unique_id( $hook_name, $callback, false );
 
         if ( ! $function_key ) {
             return false;
@@ -349,18 +349,18 @@ final class miniCal_Hook implements Iterator, ArrayAccess {
     }
 
     /**
-     * Normalizes filters set up before miniCal has initialized to miniCal_Hook objects.
+     * Normalizes filters set up before osGrandHorizon has initialized to osGrandHorizon_Hook objects.
      *
      * The `$filters` parameter should be an array keyed by hook name, with values
      * containing either:
      *
-     *  - A `miniCal_Hook` instance
+     *  - A `osGrandHorizon_Hook` instance
      *  - An array of callbacks keyed by their priorities
      *
      * Examples:
      *
      *     $filters = array(
-     *         'miniCal_fatal_error_handler_enabled' => array(
+     *         'osGrandHorizon_fatal_error_handler_enabled' => array(
      *             10 => array(
      *                 array(
      *                     'accepted_args' => 0,
@@ -375,19 +375,19 @@ final class miniCal_Hook implements Iterator, ArrayAccess {
      * @since 4.7.0
      *
      * @param array $filters Filters to normalize. See documentation above for details.
-     * @return miniCal_Hook[] Array of normalized filters.
+     * @return osGrandHorizon_Hook[] Array of normalized filters.
      */
     public static function build_preinitialized_hooks( $filters ) {
-        /** @var miniCal_Hook[] $normalized */
+        /** @var osGrandHorizon_Hook[] $normalized */
         $normalized = array();
 
         foreach ( $filters as $hook_name => $callback_groups ) {
-            if ( is_object( $callback_groups ) && $callback_groups instanceof miniCal_Hook ) {
+            if ( is_object( $callback_groups ) && $callback_groups instanceof osGrandHorizon_Hook ) {
                 $normalized[ $hook_name ] = $callback_groups;
                 continue;
             }
 
-            $hook = new miniCal_Hook();
+            $hook = new osGrandHorizon_Hook();
 
             // Loop through callback groups.
             foreach ( $callback_groups as $priority => $callbacks ) {

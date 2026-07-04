@@ -1,7 +1,7 @@
 <?php
 
 /* 
-*   Base Controller that takes care of Security & Permission (User Access) of Minical
+*   Base Controller that takes care of Security & Permission (User Access) of OS Grand Horizon
 */
 class MY_Controller extends CI_Controller {
 
@@ -340,7 +340,7 @@ class MY_Controller extends CI_Controller {
             $host_name = $_SERVER['HTTP_HOST'];
             $protocol = $this->config->item('server_protocol');
             $is_hosted_prod_service = getenv('IS_HOSTED_PROD_SERVICE');
-            if ((!$whitelabelinfo && $this->company_data['partner_id']) || ($whitelabelinfo && ($is_hosted_prod_service || $host_name ==  'app.minical.io' || $host_name ==  'demo.minical.io') && isset($whitelabelinfo['id']) && $whitelabelinfo['id'] != $this->company_data['partner_id'])) {
+            if ((!$whitelabelinfo && $this->company_data['partner_id']) || ($whitelabelinfo && ($is_hosted_prod_service || $host_name ==  'app.osgrandhorizon.io' || $host_name ==  'demo.osgrandhorizon.io') && isset($whitelabelinfo['id']) && $whitelabelinfo['id'] != $this->company_data['partner_id'])) {
                 $white_label_detail = $this->Whitelabel_partner_model->get_partners(array('id' => $this->company_data['partner_id']));
                 if($white_label_detail && isset($white_label_detail[0])) {
                     $this->session->set_userdata('white_label_information', $white_label_detail[0]);

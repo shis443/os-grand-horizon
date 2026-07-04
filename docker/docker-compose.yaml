@@ -23,12 +23,12 @@ services:
     db:
         image: mariadb:latest
         environment:
-            MYSQL_USER: 'minical'
-            MYSQL_PASSWORD: 'MiniCalPwd'
+            MYSQL_USER: 'osgrandhorizon'
+            MYSQL_PASSWORD: 'OSGrandHorizonPwd'
             # ensure the password matches the DATABASE_PASS above
-            MYSQL_ROOT_PASSWORD: 'MiniCalPwd'
+            MYSQL_ROOT_PASSWORD: 'OSGrandHorizonPwd'
             # ensure the name matches the DATABASE_NAME above
-            MYSQL_DATABASE: 'minical'
+            MYSQL_DATABASE: 'osgrandhorizon'
         volumes:
             - mysqldata:/var/lib/mysql
         ports:

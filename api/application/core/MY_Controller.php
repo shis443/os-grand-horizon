@@ -1,7 +1,7 @@
 <?php
 
 /* 
-*	Base Controller that takes care of Security & Permission (User Access) of Minical
+*	Base Controller that takes care of Security & Permission (User Access) of OS Grand Horizon
 */
 // This can be removed if you use __autoload() in config.php OR use Modular Extensions
 require APPPATH.'/libraries/REST_Controller.php';

@@ -125,10 +125,10 @@ $('.save-all, #sync-occupancy-button').click(function() {
 		$(this).find('.rate-plan').each(function() {
                 var otaRatePlan = $(this).find('.ota-rate-plan').data('id');
                 var pmsRatePlan = $(this).find('.pms-rate-plan select').val();
-                var minicalratePlanCurrency = $(this).find('option[value="'+pmsRatePlan+'"]').attr('data-rate-plan-currency');
+                var osgrandhorizonratePlanCurrency = $(this).find('option[value="'+pmsRatePlan+'"]').attr('data-rate-plan-currency');
             
-                if(minicalratePlanCurrency != undefined)
-                    ratePlanCurrencyAr.push(minicalratePlanCurrency);
+                if(osgrandhorizonratePlanCurrency != undefined)
+                    ratePlanCurrencyAr.push(osgrandhorizonratePlanCurrency);
             
                 payload.rate_plans[otaRoomType][otaRatePlan] = pmsRatePlan;
 
@@ -156,10 +156,10 @@ $('.save-all, #sync-occupancy-button').click(function() {
         if(otaId == 4 && pmsRoomType != 0)
         {
             var otaRoomTypeOccupancy = $(this).find('.ota-room-type').attr('data-ota-room-type-max-occupancy');
-            var minicalRoomTypeOccupancy = $(this).find('option[value="'+pmsRoomType+'"]').attr('data-pms-room-type-occupency');
+            var osgrandhorizonRoomTypeOccupancy = $(this).find('option[value="'+pmsRoomType+'"]').attr('data-pms-room-type-occupency');
             var roomName = $(this).find('option[value="'+pmsRoomType+'"]').text();
-            if(otaRoomTypeOccupancy != minicalRoomTypeOccupancy){
-                errorMsg = "Error: Agoda room occupancy ("+otaRoomTypeOccupancy+") and minical room occupancy ("+minicalRoomTypeOccupancy+") for room "+roomName+" must be same.";
+            if(otaRoomTypeOccupancy != osgrandhorizonRoomTypeOccupancy){
+                errorMsg = "Error: Agoda room occupancy ("+otaRoomTypeOccupancy+") and osgrandhorizon room occupancy ("+osgrandhorizonRoomTypeOccupancy+") for room "+roomName+" must be same.";
             }
         }
 	});
@@ -170,7 +170,7 @@ $('.save-all, #sync-occupancy-button').click(function() {
         $.each(ratePlanCurrencyAr, function(index, ratePlanCurrency){
             if(ratePlanCurrency != otaCompanyCurrency)
             {
-                errorMsg = 'Error: All minical rate plan currency ('+ratePlanCurrency+ ') and Agoda hotel currency ('+otaCompanyCurrency+') must be same.';
+                errorMsg = 'Error: All osgrandhorizon rate plan currency ('+ratePlanCurrency+ ') and Agoda hotel currency ('+otaCompanyCurrency+') must be same.';
             }
         });
        

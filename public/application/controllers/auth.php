@@ -41,7 +41,7 @@ class Auth extends MY_Controller
         $this->load->model('Employee_log_model');
         $this->load->model('Whitelabel_partner_model');
         $this->load->model('Extension_model');
-        $this->test_email = 'test@minical.io';
+        $this->test_email = 'test@osgrandhorizon.io';
     }
 
     function index()
@@ -125,7 +125,7 @@ class Auth extends MY_Controller
         {
             $this->session->set_userdata('white_label_information', $white_label_detail);
         } else {
-            $white_label_detail = $this->Whitelabel_partner_model->get_partners(array('id' => 0)); // default Minical
+            $white_label_detail = $this->Whitelabel_partner_model->get_partners(array('id' => 0)); // default OS Grand Horizon
             if($white_label_detail)
             {
                 $white_label_detail = $white_label_detail[0];
@@ -368,9 +368,9 @@ class Auth extends MY_Controller
             $data['main_content']         = 'auth/register_form';
             
             // $recaptcha_response_token =  $this->input->post("g-recaptcha-response");
-            // if(!empty($this->input->post("minical_homepage")) && $this->input->post("minical_homepage") == 'minical_homepage')
+            // if(!empty($this->input->post("osgrandhorizon_homepage")) && $this->input->post("osgrandhorizon_homepage") == 'osgrandhorizon_homepage')
             // {
-            //     $recaptcha_secret_key = $this->config->item('minical_homepage_recaptcha_secret_key', 'tank_auth');
+            //     $recaptcha_secret_key = $this->config->item('osgrandhorizon_homepage_recaptcha_secret_key', 'tank_auth');
             // }
             // else
             // {
@@ -456,10 +456,10 @@ class Auth extends MY_Controller
 
                 $data['company_id'] = $company_id;
 
-                // if the email address is not a test account (domain != innGrid.net or Minical)
+                // if the email address is not a test account (domain != innGrid.net or OS Grand Horizon)
                 $domain = strtolower(substr(strrchr($data['email'], "@"), 1));
 
-                if (($domain != "inngrid.net" && $domain != "minical.io"))
+                if (($domain != "inngrid.net" && $domain != "osgrandhorizon.io"))
                 {
                     /*
                      * Do not added to mailchimp,close io and don't send welcome email
@@ -476,7 +476,7 @@ class Auth extends MY_Controller
                 }
                 else
                 {
-                    // if email is test@minical.io then redirect
+                    // if email is test@osgrandhorizon.io then redirect
                     if($email==$this->test_email)
                     {
                         $employee_data = $this->tank_auth->forgot_password($data['email']);
@@ -522,7 +522,7 @@ class Auth extends MY_Controller
 
                        // $this->_show_message(sprintf($this->lang->line('auth_message_activation_email_sent'), $data['email']));
 
-                        if(!empty($this->input->post("minical_homepage")) && $this->input->post("minical_homepage") == 'minical_homepage')
+                        if(!empty($this->input->post("osgrandhorizon_homepage")) && $this->input->post("osgrandhorizon_homepage") == 'osgrandhorizon_homepage')
                         {
                             redirect('booking');
                         }
@@ -543,7 +543,7 @@ class Auth extends MY_Controller
             else{
                 //print_r(validation_errors());
                 $is_hosted_prod_service = getenv('IS_HOSTED_PROD_SERVICE');
-                if($is_hosted_prod_service || $_SERVER['HTTP_HOST'] == "app.minical.io" || $_SERVER['HTTP_HOST'] == "demo.minical.io"){
+                if($is_hosted_prod_service || $_SERVER['HTTP_HOST'] == "app.osgrandhorizon.io" || $_SERVER['HTTP_HOST'] == "demo.osgrandhorizon.io"){
                     echo 'The Email field must contain a valid email address.';
                 } else {
                     echo strip_tags(form_error('email'));
@@ -616,7 +616,7 @@ class Auth extends MY_Controller
         {
             $this->session->set_userdata('white_label_information', $white_label_detail);
         } else {
-            $white_label_detail = $this->Whitelabel_partner_model->get_partners(array('id' => 0)); // default minical
+            $white_label_detail = $this->Whitelabel_partner_model->get_partners(array('id' => 0)); // default osgrandhorizon
             if($white_label_detail)
             {
                 $white_label_detail = $white_label_detail[0];
@@ -695,7 +695,7 @@ class Auth extends MY_Controller
 
         $whitelabelinfo = $this->session->userdata('white_label_information');
 
-        $email_from = $whitelabelinfo && isset($whitelabelinfo['do_not_reply_email']) && $whitelabelinfo['do_not_reply_email'] ? $whitelabelinfo['do_not_reply_email'] : 'donotreply@minical.io';
+        $email_from = $whitelabelinfo && isset($whitelabelinfo['do_not_reply_email']) && $whitelabelinfo['do_not_reply_email'] ? $whitelabelinfo['do_not_reply_email'] : 'donotreply@osgrandhorizon.io';
 
         // Send welcome email
         if (
@@ -703,10 +703,10 @@ class Auth extends MY_Controller
             $data['name'] != 'selenium test company'
         ) {    // send "welcome" email
 
-            // alert support@minical.io about this new user that registered
+            // alert support@osgrandhorizon.io about this new user that registered
             $this->load->library('email');
             $this->email->from($email_from);
-            $this->email->to("sales@minical.io");
+            $this->email->to("sales@osgrandhorizon.io");
             $this->email->subject("New user alert");
             $this->email->message("company name: ".$data['name']
                 ." \n<br/>email: ".$data['email']."\n<br/>name: "
@@ -789,7 +789,7 @@ class Auth extends MY_Controller
     {
         $time_zone    = 'America/New_York';
         $this->load->model('Whitelabel_partner_model');
-        // create company in minical database
+        // create company in osgrandhorizon database
         $company_data = array(
             'name'                     => $data['name'],
             'phone'                    => isset($data['phone'])?$data['phone']:'',
@@ -847,7 +847,7 @@ class Auth extends MY_Controller
             }
         }
         
-        // create company in minical
+        // create company in osgrandhorizon
         $company_id = $this->Company_model->create_company($company_data);
 
         $api_key = md5(uniqid(rand(), true));
@@ -864,8 +864,8 @@ class Auth extends MY_Controller
 
             if(
                 !$is_hosted_prod_service && 
-                $_SERVER['HTTP_HOST'] != "app.minical.io" && 
-                $_SERVER['HTTP_HOST'] != "demo.minical.io"
+                $_SERVER['HTTP_HOST'] != "app.osgrandhorizon.io" && 
+                $_SERVER['HTTP_HOST'] != "demo.osgrandhorizon.io"
             ){
                 $partner_x_admin_data = array(
                                             'partner_id' => $company_data['partner_id'], 
@@ -876,7 +876,7 @@ class Auth extends MY_Controller
 
         }
 
-         // support@minical.io will have admin permission
+         // support@osgrandhorizon.io will have admin permission
         
         // check for whitelabel partner
         // $admin_user_ids = $this->Whitelabel_partner_model->get_whitelabel_admin_ids($data['user_id']);        
@@ -927,10 +927,10 @@ class Auth extends MY_Controller
             $subscription_level = BASIC;
         }
         
-        $signup_minical_plan = isset($_COOKIE['signup-minical-plan']) ? $_COOKIE['signup-minical-plan'] : strtolower($subscription_type);
-        $subscription_level = $signup_minical_plan == "minimal" ? BASIC : $subscription_level;
-        $subscription_level = $signup_minical_plan == "premium" ? PREMIUM : $subscription_level;
-        // $subscription_level = $signup_minical_plan == "elite" ? ELITE : $subscription_level;
+        $signup_osgrandhorizon_plan = isset($_COOKIE['signup-osgrandhorizon-plan']) ? $_COOKIE['signup-osgrandhorizon-plan'] : strtolower($subscription_type);
+        $subscription_level = $signup_osgrandhorizon_plan == "minimal" ? BASIC : $subscription_level;
+        $subscription_level = $signup_osgrandhorizon_plan == "premium" ? PREMIUM : $subscription_level;
+        // $subscription_level = $signup_osgrandhorizon_plan == "elite" ? ELITE : $subscription_level;
 
         $subscription_type = $this->_process_subscription_type($subscription_type, $company_id, $region, $subscription_level);
         
@@ -1081,7 +1081,7 @@ class Auth extends MY_Controller
      */
     private function _process_subscription_type($subscription_type, $company_id, $region, $subscription_level = 0)
     {
-        $renewal_period = isset($_COOKIE['signup-minical-renewal']) ? $_COOKIE['signup-minical-renewal'] : "";
+        $renewal_period = isset($_COOKIE['signup-osgrandhorizon-renewal']) ? $_COOKIE['signup-osgrandhorizon-renewal'] : "";
         $renewal_period = $renewal_period ? ($renewal_period) : '1 month';
 
         $subscription_type          = $this->form_validation->set_value('subscription_type'); // LITE, STANDARD, or ENTERPRISE
@@ -1246,13 +1246,13 @@ class Auth extends MY_Controller
         
         $whitelabelinfo = $this->session->userdata('white_label_information');
 
-        $from_email = $whitelabelinfo && isset($whitelabelinfo['do_not_reply_email']) && $whitelabelinfo['do_not_reply_email'] ? $whitelabelinfo['do_not_reply_email'] : 'donotreply@minical.io';
+        $from_email = $whitelabelinfo && isset($whitelabelinfo['do_not_reply_email']) && $whitelabelinfo['do_not_reply_email'] ? $whitelabelinfo['do_not_reply_email'] : 'donotreply@osgrandhorizon.io';
         
-        $from_name = $whitelabelinfo && isset($whitelabelinfo['name']) && $whitelabelinfo['name'] ? $whitelabelinfo['name'] : 'Minical';
+        $from_name = $whitelabelinfo && isset($whitelabelinfo['name']) && $whitelabelinfo['name'] ? $whitelabelinfo['name'] : 'OS Grand Horizon';
 
-        $reply_to_email = $whitelabelinfo && isset($whitelabelinfo['support_email']) && $whitelabelinfo['support_email'] ? $whitelabelinfo['support_email'] : 'support@minical.io';
+        $reply_to_email = $whitelabelinfo && isset($whitelabelinfo['support_email']) && $whitelabelinfo['support_email'] ? $whitelabelinfo['support_email'] : 'support@osgrandhorizon.io';
         
-        $reply_to_name = $whitelabelinfo && isset($whitelabelinfo['name']) && $whitelabelinfo['name'] ? $whitelabelinfo['name'] : 'Minical';
+        $reply_to_name = $whitelabelinfo && isset($whitelabelinfo['name']) && $whitelabelinfo['name'] ? $whitelabelinfo['name'] : 'OS Grand Horizon';
 
         $this->email->from($from_email, $from_name);
         $this->email->reply_to($reply_to_email, $reply_to_name." Support");
@@ -1711,7 +1711,7 @@ class Auth extends MY_Controller
     function _check_max_rooms($number_of_rooms)
     {
         $whitelabelinfo = $this->session->userdata('white_label_information');
-        $reply_to_email = $whitelabelinfo && isset($whitelabelinfo['support_email']) && $whitelabelinfo['support_email'] ? $whitelabelinfo['support_email'] : 'support@minical.io';
+        $reply_to_email = $whitelabelinfo && isset($whitelabelinfo['support_email']) && $whitelabelinfo['support_email'] ? $whitelabelinfo['support_email'] : 'support@osgrandhorizon.io';
 
         if ($number_of_rooms > 500) {
             $this->form_validation->set_message(
@@ -1761,7 +1761,7 @@ class Auth extends MY_Controller
     {
 
         $whitelabelinfo = $this->session->userdata('white_label_information');
-        $reply_to_email = $whitelabelinfo && isset($whitelabelinfo['support_email']) && $whitelabelinfo['support_email'] ? $whitelabelinfo['support_email'] : 'support@minical.io';
+        $reply_to_email = $whitelabelinfo && isset($whitelabelinfo['support_email']) && $whitelabelinfo['support_email'] ? $whitelabelinfo['support_email'] : 'support@osgrandhorizon.io';
         $this->load->library('Chargify_wrapper');
         $subscription = null;
         $response     = array(
@@ -1798,7 +1798,7 @@ class Auth extends MY_Controller
                 case 'trial_ended':
                     $response = array(
                         'is_blocking' => 0,
-                        'message'     => 'Thank you for trying minical! To set up your recurring subscription '.($is_manual
+                        'message'     => 'Thank you for trying osgrandhorizon! To set up your recurring subscription '.($is_manual
                                 ? 'please contact '.$reply_to_email
                                 : 'please update your payment details. '),
                         'show_link'   => 1,
@@ -1852,7 +1852,7 @@ class Auth extends MY_Controller
     function thank_you()
     {
         $whitelabelinfo = $this->session->userdata('white_label_information');
-        $data['support_email'] = $whitelabelinfo && isset($whitelabelinfo['support_email']) && $whitelabelinfo['support_email'] ? $whitelabelinfo['support_email'] : 'support@minical.io';
+        $data['support_email'] = $whitelabelinfo && isset($whitelabelinfo['support_email']) && $whitelabelinfo['support_email'] ? $whitelabelinfo['support_email'] : 'support@osgrandhorizon.io';
        
         $data['menu_on'] = FALSE;
         $data['main_content'] = 'auth/thank_you';
@@ -1903,7 +1903,7 @@ class Auth extends MY_Controller
         ///property build logic
          $data_build = $company_data = array();
         $is_hosted_prod_service = getenv('IS_HOSTED_PROD_SERVICE');
-        if($is_hosted_prod_service || $_SERVER['HTTP_HOST'] == "app.minical.io" || $_SERVER['HTTP_HOST'] == "demo.minical.io"){
+        if($is_hosted_prod_service || $_SERVER['HTTP_HOST'] == "app.osgrandhorizon.io" || $_SERVER['HTTP_HOST'] == "demo.osgrandhorizon.io"){
          
             $property_data = $this->Company_model->get_property_build($data['property_type']);
             $feature_setting = json_decode($property_data['setting_json'], true);
@@ -1979,7 +1979,7 @@ class Auth extends MY_Controller
         $company = $this->User_model->get_company_id($user_id);
         $company_id = $company->company_id;
 
-        // update company in minical database
+        // update company in osgrandhorizon database
         $company_data = array(
             'name'             => $data['name'],
             'number_of_rooms'  => isset($data['number_of_rooms'])?$data['number_of_rooms']:'15',
@@ -1989,7 +1989,7 @@ class Auth extends MY_Controller
             'enable_api_access' => 1
         );
 
-        // create company in minical
+        // create company in osgrandhorizon
         $this->Company_model->update_company($company_id, $company_data);
         $api_key = md5(uniqid(rand(), true));
         $this->Company_model->insert_company_api_key($company_id, $api_key);
@@ -2009,7 +2009,7 @@ class Auth extends MY_Controller
         // Now innitialize new rooms
         $this->_initialize_company($company_id);
 
-        // update user minical database
+        // update user osgrandhorizon database
 
         if($this->config->item('app_environment') == "development"){
             $this->ci->session->set_userdata('status', STATUS_ACTIVATED);

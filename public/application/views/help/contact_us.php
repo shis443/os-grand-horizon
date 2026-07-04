@@ -4,7 +4,7 @@
 		
 		
 		<p>
-			E-mail: <a href="mailto:support@minical.io">support@minical.io</a>
+			E-mail: <a href="mailto:support@osgrandhorizon.io">support@osgrandhorizon.io</a>
 		</p>
 		
 		<p>

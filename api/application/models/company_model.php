@@ -120,7 +120,7 @@ class Company_model extends CI_Model {
 
 	function get_company_detail($company_id)
 	{
-		$this->db->select('c.*, capi.*, up.*, cs.subscription_level, cs.subscription_state, cs.payment_method, cs.subscription_id, cs.balance, u.email as owner_email, p.*, count(r.room_id) as number_of_rooms_actual,c.partner_id,IFNULL(wp.username,"Minical") as partner_name',FALSE);
+		$this->db->select('c.*, capi.*, up.*, cs.subscription_level, cs.subscription_state, cs.payment_method, cs.subscription_id, cs.balance, u.email as owner_email, p.*, count(r.room_id) as number_of_rooms_actual,c.partner_id,IFNULL(wp.username,"OS Grand Horizon") as partner_name',FALSE);
 		$this->db->from('company as c');
 		$this->db->join('company_admin_panel_info as capi', 'c.company_id = capi.company_id', 'left');
 		$this->db->join('company_subscription as cs', 'c.company_id = cs.company_id', 'left');

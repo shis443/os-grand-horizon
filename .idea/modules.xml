@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/miniCal.iml" filepath="$PROJECT_DIR$/.idea/miniCal.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/osgrandhorizon.iml" filepath="$PROJECT_DIR$/.idea/osgrandhorizon.iml" />
     </modules>
   </component>
 </project>

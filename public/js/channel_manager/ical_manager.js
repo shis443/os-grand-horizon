@@ -45,13 +45,13 @@ $(function(){
 function getAllMappingRoomRows()
 {
     var icalData = [];
-    $('.minical-rooms-tr').each(function(){
+    $('.osgrandhorizon-rooms-tr').each(function(){
         var sendStatus = $(this).find('select[name="send-status"]').val();
         if(sendStatus == 1 || $(this).hasClass('rooms-mapped-tr'))
         { //get those rows value that send status is 1 and that are already mapped with ical
             var importUrl = $(this).find("input[name='import-url']").val();
             icalData.push({
-                minical_room_id: $(this).attr('data-room-id'),
+                osgrandhorizon_room_id: $(this).attr('data-room-id'),
                 send_status: sendStatus,
                 import_url: importUrl
             });  

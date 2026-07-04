@@ -714,7 +714,7 @@ HotelDatepicker.prototype.autoclose = function autoclose () {
 HotelDatepicker.prototype.documentClick = function documentClick (evt) {
         // Check if the click was outside the datepicker and close it
 	if (!this.parent.contains(evt.target) && evt.target !== this.input) {
-		// Minical - don't close datepicker on outside click
+		// OS Grand Horizon - don't close datepicker on outside click
 		//this.closeDatepicker();
 	} else if (evt.target.tagName.toLowerCase() === 'td') {
             // Check if the click was on a calendar day

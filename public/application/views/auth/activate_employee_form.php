@@ -3,9 +3,9 @@
             $whitelabelinfo = $this->session->userdata('white_label_information');
         ?>
     <h1 style="text-align: center;">
-	<?php if($whitelabelinfo){ echo ucfirst($whitelabelinfo['name']); }else{ echo 'Minical';} ?> Account Activation
+	<?php if($whitelabelinfo){ echo ucfirst($whitelabelinfo['name']); }else{ echo 'OS Grand Horizon';} ?> Account Activation
 	</h1>
-        <p>To activate your <?php if($whitelabelinfo){ echo $whitelabelinfo['name']; }else{ echo 'Minical';} ?> account, you will need to set a password. </p>
+        <p>To activate your <?php if($whitelabelinfo){ echo $whitelabelinfo['name']; }else{ echo 'OS Grand Horizon';} ?> account, you will need to set a password. </p>
 	<br />
 
 	<?php
@@ -52,7 +52,7 @@
 	</table>
 	<br />
 	<div>
-		By clicking 'I accept' below, you are agreeing to the <a href="<?php echo base_url(); ?>auth/show_terms_of_service"><?php if($whitelabelinfo){ echo $whitelabelinfo['name']; }else{ echo 'Minical';} ?> Terms of Service.</a>
+		By clicking 'I accept' below, you are agreeing to the <a href="<?php echo base_url(); ?>auth/show_terms_of_service"><?php if($whitelabelinfo){ echo $whitelabelinfo['name']; }else{ echo 'OS Grand Horizon';} ?> Terms of Service.</a>
 	</div>
 	<br />
 	<input class="btn btn-success" type="submit" name="submit" value="I accept" />

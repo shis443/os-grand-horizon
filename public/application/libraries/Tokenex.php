@@ -206,7 +206,7 @@ class Tokenex {
             return array("success" => false, "message" => "Amount must be equal OR more than 2000");
         }
         
-        $idempotency_key = 'MINICAL'.strtotime(date('Y-m-d H:i:s'));
+        $idempotency_key = 'OSGRANDHORIZON'.strtotime(date('Y-m-d H:i:s'));
         
         $customer = $this->ci->Customer_model->get_customer_info($customer_id);
         
@@ -336,7 +336,7 @@ class Tokenex {
         {
             return array("success" => false, "message" => "Amount must be equal OR more than 2000");
         }
-        $idempotency_key = 'MINICAL'.strtotime(date('Y-m-d H:i:s'));
+        $idempotency_key = 'OSGRANDHORIZON'.strtotime(date('Y-m-d H:i:s'));
         
         $payment_gateway = $payment_gateway_settings_key = $login = $password = $login_key = $password_key = null;
         $payment_gateway = "PayUGateway"; 
@@ -940,9 +940,9 @@ class Tokenex {
 
             $whitelabelinfo = $this->ci->session->userdata('white_label_information');
 
-            $from_email = isset($whitelabelinfo['support_email']) && $whitelabelinfo['support_email'] ? $whitelabelinfo['support_email'] : 'support@minical.io';
+            $from_email = isset($whitelabelinfo['support_email']) && $whitelabelinfo['support_email'] ? $whitelabelinfo['support_email'] : 'support@osgrandhorizon.io';
             
-            $to_email = isset($whitelabelinfo['support_email']) && $whitelabelinfo['support_email'] ? $whitelabelinfo['support_email'] : 'support@minical.io';
+            $to_email = isset($whitelabelinfo['support_email']) && $whitelabelinfo['support_email'] ? $whitelabelinfo['support_email'] : 'support@osgrandhorizon.io';
 
             $this->ci->email->from($from_email);
             $this->ci->email->to($to_email);

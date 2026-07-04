@@ -136,5 +136,5 @@ if(sessionStorage.getItem("currentCompanyId") != $('#currentCompanyId').val())
 }
 
 window.parent.postMessage({
-    'minical-current-url': window.location.href
+    'osgrandhorizon-current-url': window.location.href
 },"*");

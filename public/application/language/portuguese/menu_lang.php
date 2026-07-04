@@ -12,8 +12,8 @@ $lang['run_night_audit'] = 'Executar auditoria noturna';
 $lang['undo_night_audit'] = 'Anular auditoria noturna (Beta)'; 
 $lang['selling_date_behind_today'] = 'A data de venda é anterior a hoje';
 
-$lang['how_to_setup_minical'] = 'Como configurar o Minical';
-$lang['how_to_use_minical'] = 'Como usar o Minical';
+$lang['how_to_setup_osgrandhorizon'] = 'Como configurar o OS Grand Horizon';
+$lang['how_to_use_osgrandhorizon'] = 'Como usar o OS Grand Horizon';
 $lang['support_center'] = 'Centro de Apoio';
 $lang['my_account'] = 'Minha conta';
 $lang['my_properties'] = 'Minhas propriedades';
@@ -91,7 +91,7 @@ $lang['customer_fields'] = 'Campos de clientes';
 $lang['unconfirmed_reservations'] = 'Reservas não confirmadas';
 
 $lang['online_booking_engine'] = 'Motor de reservas on-line';
-$lang['minical_channel_manager'] = 'Gerenciador de canais do Minical';
+$lang['osgrandhorizon_channel_manager'] = 'Gerenciador de canais do OS Grand Horizon';
 $lang['myallocator'] = 'Myallocator';
 
 $lang['images'] = 'Imagens';

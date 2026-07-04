@@ -2134,7 +2134,7 @@ class Customer extends MY_Controller {
             $update_card_data = array('is_deleted' => 1);
             $this->Card_model->update_detokenize_cards($customer_ids, $card_ids, $update_card_data, "customer_deleted_token_details"); // soft delete all unused tokens in new table
             
-            //$this->Card_model->delete_unused_customer_cards($customer_ids, $card_ids); // delete all unused tokens from Minical
+            //$this->Card_model->delete_unused_customer_cards($customer_ids, $card_ids); // delete all unused tokens from OS Grand Horizon
             
             echo json_encode(array('success' => true));
         }

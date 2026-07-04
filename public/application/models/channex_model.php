@@ -204,15 +204,15 @@ class Channex_model extends CI_Model {
         }
     }
 
-    function create_or_update_room_type($ota_x_company_id, $ota_room_type_id, $minical_room_type_id, $company_id)
+    function create_or_update_room_type($ota_x_company_id, $ota_room_type_id, $osgrandhorizon_room_type_id, $company_id)
     {
         if($this->get_room_type($ota_x_company_id, $ota_room_type_id, null)){
-            return $this->update_room_type($ota_x_company_id, $ota_room_type_id, $minical_room_type_id);
+            return $this->update_room_type($ota_x_company_id, $ota_room_type_id, $osgrandhorizon_room_type_id);
         }
         $data = array (
             'ota_x_company_id' => $ota_x_company_id,
             'ota_room_type_id' => $ota_room_type_id,
-            'minical_room_type_id' => $minical_room_type_id,
+            'osgrandhorizon_room_type_id' => $osgrandhorizon_room_type_id,
             'company_id' => $company_id
         );
         
@@ -225,14 +225,14 @@ class Channex_model extends CI_Model {
             return $this->db->insert_id();
     }
     
-    function update_room_type($ota_x_company_id, $ota_room_type_id, $minical_room_type_id)
+    function update_room_type($ota_x_company_id, $ota_room_type_id, $osgrandhorizon_room_type_id)
     {
         $this->db->where('ota_x_company_id', $ota_x_company_id);
         $this->db->where('ota_room_type_id', $ota_room_type_id);
         $data = array (
             'ota_x_company_id' => $ota_x_company_id,
             'ota_room_type_id' => $ota_room_type_id,
-            'minical_room_type_id' => $minical_room_type_id
+            'osgrandhorizon_room_type_id' => $osgrandhorizon_room_type_id
         );
         $data = (object) $data;
         $this->db->update('ota_room_types', $data);
@@ -244,15 +244,15 @@ class Channex_model extends CI_Model {
         return TRUE;        
     }
 
-    function get_room_type($ota_x_company_id, $ota_room_type_id, $minical_room_type_id = null)
+    function get_room_type($ota_x_company_id, $ota_room_type_id, $osgrandhorizon_room_type_id = null)
     {
         if(isset($ota_room_type_id) && $ota_room_type_id)
         {
             $this->db->where('ota_room_type_id', $ota_room_type_id);
         }
-        if(isset($minical_room_type_id) && $minical_room_type_id)
+        if(isset($osgrandhorizon_room_type_id) && $osgrandhorizon_room_type_id)
         {
-            $this->db->where('minical_room_type_id', $minical_room_type_id);
+            $this->db->where('osgrandhorizon_room_type_id', $osgrandhorizon_room_type_id);
         }
         $this->db->where('ota_x_company_id', $ota_x_company_id);
         
@@ -268,15 +268,15 @@ class Channex_model extends CI_Model {
         }
     }
 
-    function create_or_update_rate_plan($ota_x_company_id, $ota_room_type_id, $minical_rate_plan_id, $ota_rate_plan_id, $company_id)
+    function create_or_update_rate_plan($ota_x_company_id, $ota_room_type_id, $osgrandhorizon_rate_plan_id, $ota_rate_plan_id, $company_id)
     {
-        if($this->get_rate_plan($ota_x_company_id, $ota_room_type_id, $minical_rate_plan_id, $ota_rate_plan_id)){
-            return $this->update_rate_plan($ota_x_company_id, $ota_room_type_id, $minical_rate_plan_id, $ota_rate_plan_id, $company_id);
+        if($this->get_rate_plan($ota_x_company_id, $ota_room_type_id, $osgrandhorizon_rate_plan_id, $ota_rate_plan_id)){
+            return $this->update_rate_plan($ota_x_company_id, $ota_room_type_id, $osgrandhorizon_rate_plan_id, $ota_rate_plan_id, $company_id);
         } else {
             $data = array (
                 'ota_x_company_id' => $ota_x_company_id,
                 'ota_room_type_id' => $ota_room_type_id,
-                'minical_rate_plan_id' => $minical_rate_plan_id,
+                'osgrandhorizon_rate_plan_id' => $osgrandhorizon_rate_plan_id,
                 'ota_rate_plan_id' => $ota_rate_plan_id,
                 'company_id' => $company_id
             );
@@ -292,7 +292,7 @@ class Channex_model extends CI_Model {
         
     }
     
-    function update_rate_plan($ota_x_company_id, $ota_room_type_id, $minical_rate_plan_id, $ota_rate_plan_id, $company_id)
+    function update_rate_plan($ota_x_company_id, $ota_room_type_id, $osgrandhorizon_rate_plan_id, $ota_rate_plan_id, $company_id)
     {
         $this->db->where('ota_x_company_id', $ota_x_company_id);
         $this->db->where('ota_room_type_id', $ota_room_type_id);
@@ -302,7 +302,7 @@ class Channex_model extends CI_Model {
         $data = array (
             'ota_x_company_id' => $ota_x_company_id,
             'ota_room_type_id' => $ota_room_type_id,
-            'minical_rate_plan_id' => $minical_rate_plan_id,
+            'osgrandhorizon_rate_plan_id' => $osgrandhorizon_rate_plan_id,
             'ota_rate_plan_id' => $ota_rate_plan_id
         );
         $data = (object) $data;
@@ -315,7 +315,7 @@ class Channex_model extends CI_Model {
         return TRUE;        
     }
     
-    function get_rate_plan($ota_x_company_id, $ota_room_type_id, $minical_rate_plan_id, $ota_rate_plan_id)
+    function get_rate_plan($ota_x_company_id, $ota_room_type_id, $osgrandhorizon_rate_plan_id, $ota_rate_plan_id)
     {
         $this->db->where('ota_x_company_id', $ota_x_company_id);
         $this->db->where('ota_room_type_id', $ota_room_type_id);
@@ -380,7 +380,7 @@ class Channex_model extends CI_Model {
         $this->db->from('ota_room_types'); 
         
         if($room_type_id)     
-            $this->db->where_in('minical_room_type_id', $room_type_id);
+            $this->db->where_in('osgrandhorizon_room_type_id', $room_type_id);
 
         if($company_id)
             $this->db->where('company_id', $company_id);
@@ -403,7 +403,7 @@ class Channex_model extends CI_Model {
         $this->db->from('ota_rate_plans');  
 
         if($rate_plan_id)
-            $this->db->where('minical_rate_plan_id', $rate_plan_id);
+            $this->db->where('osgrandhorizon_rate_plan_id', $rate_plan_id);
 
         if($company_id)
             $this->db->where('company_id', $company_id);
@@ -421,7 +421,7 @@ class Channex_model extends CI_Model {
         return NULL;
     }
 
-    function get_minical_room_type_id($ota_room_type_id, $ota_x_company_id)
+    function get_osgrandhorizon_room_type_id($ota_room_type_id, $ota_x_company_id)
     {
         $this->db->from("ota_room_types");
         $this->db->where('ota_room_type_id', $ota_room_type_id);
@@ -436,9 +436,9 @@ class Channex_model extends CI_Model {
         }
 
         $result = $query->row_array(0);
-        if (isset($result['minical_room_type_id']))
+        if (isset($result['osgrandhorizon_room_type_id']))
         {
-            return $result['minical_room_type_id'];
+            return $result['osgrandhorizon_room_type_id'];
         }
         else
         {
@@ -446,7 +446,7 @@ class Channex_model extends CI_Model {
         }   
     }
 
-    function get_minical_rate_plan_id($ota_rate_plan_id, $ota_room_type_id = null, $ota_x_company_id = null)
+    function get_osgrandhorizon_rate_plan_id($ota_rate_plan_id, $ota_room_type_id = null, $ota_x_company_id = null)
     {
         $this->db->from("ota_rate_plans");
         
@@ -466,9 +466,9 @@ class Channex_model extends CI_Model {
         }
 
         $result = $query->row_array(0);
-        if (isset($result['minical_rate_plan_id']) && $result['minical_rate_plan_id'])
+        if (isset($result['osgrandhorizon_rate_plan_id']) && $result['osgrandhorizon_rate_plan_id'])
         {
-            return $result['minical_rate_plan_id'];
+            return $result['osgrandhorizon_rate_plan_id'];
         }
         else
         {

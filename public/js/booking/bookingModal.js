@@ -7492,7 +7492,7 @@ function restrictCreditCardData(cc_number, fieldName) {
         $('#reservation-message .message-heading').text('Warning');
         $('#reservation-message .message').html('<p>'+l('Our system has detected "raw" credit card numbers in the')+' '+fieldName+' '+l('field')+'. '+l('This is not secure and it is putting your company at risk')+'. ' +
             '<br><br>'+l('To securely store credit card data, please setup Payment Gateway Integration')+'. '+l('We recommend using')+' <a href="https://supportroomsy.groovehq.com/help/how-to-get-integrated-with-stripe" target="_blank">Stripe</a>.' +
-            '<br/><br>'+l('Please contact us at')+' <a href="mailto:support@minical.io" target="_blank">support@minical.io</a> '+l('if you have any questions')+'.</p>');
+            '<br/><br>'+l('Please contact us at')+' <a href="mailto:support@osgrandhorizon.io" target="_blank">support@osgrandhorizon.io</a> '+l('if you have any questions')+'.</p>');
         $('#reservation-message')
             .modal('show')
             .on('hidden.bs.modal', function () {

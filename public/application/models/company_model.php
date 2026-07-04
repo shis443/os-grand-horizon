@@ -194,7 +194,7 @@ function get_total_companies($extension_name = null, $is_extension_active = fals
                         GROUP BY b.company_id) as la "
                         , "la.company_id = c.company_id", "left");
         }
-		$this->db->select('c.*, capi.*, up.*, cs.subscription_level, cs.limit_feature, cs.subscription_state, cs.payment_method, cs.subscription_id, cs.balance, u.email as owner_email, p.*, count(DISTINCT r.room_id) as number_of_rooms_actual,c.partner_id,IFNULL(wp.username,"Minical") as partner_name, cpg.selected_payment_gateway',FALSE);
+		$this->db->select('c.*, capi.*, up.*, cs.subscription_level, cs.limit_feature, cs.subscription_state, cs.payment_method, cs.subscription_id, cs.balance, u.email as owner_email, p.*, count(DISTINCT r.room_id) as number_of_rooms_actual,c.partner_id,IFNULL(wp.username,"OS Grand Horizon") as partner_name, cpg.selected_payment_gateway',FALSE);
 		$this->db->from('company as c');
 		$this->db->join('company_admin_panel_info as capi', 'c.company_id = capi.company_id', 'left');
 		$this->db->join('company_subscription as cs', 'c.company_id = cs.company_id', 'left');
@@ -513,7 +513,7 @@ function get_total_companies($extension_name = null, $is_extension_active = fals
 					user_permissions as up
 				WHERE 
 					u.id = up.user_id AND
-					u.email != "jaeyun@minical.io"
+					u.email != "jaeyun@osgrandhorizon.io"
 				GROUP BY up.company_id
 			) as ut
 			');
@@ -635,7 +635,7 @@ function get_total_companies($extension_name = null, $is_extension_active = fals
 		$this->db->from('user_permissions as up');
 		$this->db->from('users as u');
 		$this->db->where('u.id = up.user_id');
-		$this->db->where("u.email != 'jaeyun@minical.io'");
+		$this->db->where("u.email != 'jaeyun@osgrandhorizon.io'");
 		$this->db->group_by("up.company_id");
 
 		$query = $this->db->get();
@@ -748,7 +748,7 @@ function get_total_companies($extension_name = null, $is_extension_active = fals
 				DELETE u, up, ua, upro
 				FROM  
 					user_permissions as up
-				LEFT JOIN users as u ON u.id = up.user_id AND u.email != 'support@minical.io'
+				LEFT JOIN users as u ON u.id = up.user_id AND u.email != 'support@osgrandhorizon.io'
 				LEFT JOIN user_autologin as ua ON u.id = ua.user_id
 				LEFT JOIN user_profiles as upro ON u.id = upro.user_id
 				WHERE  

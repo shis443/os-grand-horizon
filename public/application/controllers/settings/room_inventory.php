@@ -200,7 +200,7 @@ class Room_inventory extends MY_Controller {
             foreach ($room_types as $index => $room_type) {
 
                 // if the room type doesn't have image_group_id set, create one.
-                // this is made to deal with MIGRATED room_types from Minical v1.
+                // this is made to deal with MIGRATED room_types from OS Grand Horizon v1.
                 if ($room_type['image_group_id'] == '') {
                     $data = array(
                         'image_group_id' => $this->Image_model->create_image_group(ROOM_TYPE_IMAGE_TYPE_ID)

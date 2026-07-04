@@ -252,7 +252,7 @@ function open_tos(){
                             text: l('I accept')
                         }))
                         .append($('<a/>', {
-                            href: 'http://www.minical.io',
+                            href: 'http://www.osgrandhorizon.io',
                             type: 'button',
                             class: 'btn btn-default',
                             text: l('Close')
@@ -264,8 +264,8 @@ function open_tos(){
                     e.preventDefault();
 
                     if (typeof ga !== "undefined") {
-                        console.log('_trackPageview', 'Virtual-Minical-Free-Trial-Registration');
-                        ga('set', 'page', 'Virtual-Minical-Free-Trial-Registration');
+                        console.log('_trackPageview', 'Virtual-OS Grand Horizon-Free-Trial-Registration');
+                        ga('set', 'page', 'Virtual-OS Grand Horizon-Free-Trial-Registration');
                         ga('send', 'pageview');
                     }
 

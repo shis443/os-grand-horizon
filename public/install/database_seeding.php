@@ -7,7 +7,7 @@ if (file_exists($file)) {
 }
 
 $dotenv = \Dotenv\Dotenv::createImmutable(__DIR__ . '/../../')->load();
-$filename = "minical-seed.sql";
+$filename = "osgrandhorizon-seed.sql";
 
 $dbHost = getenv("DATABASE_HOST");
 $dbUser = getenv("DATABASE_USER");
@@ -31,7 +31,7 @@ if (!$mysqli_select_db) {
 
 ($fp = fopen($filename, 'r')) OR die('failed to open file:' . $filename);
 
-$sql = "SELECT pointer FROM minical_installation_meta";
+$sql = "SELECT pointer FROM osgrandhorizon_installation_meta";
 $file_position = 0;
 if ($result = mysqli_query($mysqli_connection, $sql)) {
     // Fetch one and one row
@@ -57,27 +57,27 @@ while ($deadline > time() AND ($line = fgets($fp, 102400))) {
         }
         $query = '';
 
-        if(mysqli_query($mysqli_connection, "SELECT * FROM minical_installation_meta LIMIT 1") == TRUE)
+        if(mysqli_query($mysqli_connection, "SELECT * FROM osgrandhorizon_installation_meta LIMIT 1") == TRUE)
         {
-            if ($result = mysqli_query($mysqli_connection, "SELECT pointer FROM minical_installation_meta")) {
+            if ($result = mysqli_query($mysqli_connection, "SELECT pointer FROM osgrandhorizon_installation_meta")) {
                 if (!mysqli_fetch_row($result)) {
-                    mysqli_query($mysqli_connection, "INSERT INTO minical_installation_meta (pointer, error) VALUES(0, 'no')");
+                    mysqli_query($mysqli_connection, "INSERT INTO osgrandhorizon_installation_meta (pointer, error) VALUES(0, 'no')");
                 }
                 mysqli_free_result($result);
             }
 
             $file_position = ftell($fp);
-            mysqli_query($mysqli_connection, "UPDATE minical_installation_meta SET pointer = $file_position");
+            mysqli_query($mysqli_connection, "UPDATE osgrandhorizon_installation_meta SET pointer = $file_position");
             $modal_flag = 0;
         } else {
-            $sql = "CREATE TABLE `minical_installation_meta` (
+            $sql = "CREATE TABLE `osgrandhorizon_installation_meta` (
                         `pointer` bigint(20) NOT NULL,
                         `error` text
                     ) ENGINE=InnoDB DEFAULT CHARSET=utf8";
             $result = mysqli_query($mysqli_connection, $sql);
 
             $file_position = ftell($fp);
-            mysqli_query($mysqli_connection, "INSERT INTO minical_installation_meta (pointer, error) VALUES($file_position, 'no')");
+            mysqli_query($mysqli_connection, "INSERT INTO osgrandhorizon_installation_meta (pointer, error) VALUES($file_position, 'no')");
         }
         $queryCount++;
     }

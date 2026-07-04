@@ -341,7 +341,7 @@
 
                                 <?php
                                 $is_hosted_prod_service = getenv('IS_HOSTED_PROD_SERVICE');
-                                if($is_hosted_prod_service || $_SERVER['HTTP_HOST'] == "app.minical.io" || $_SERVER['HTTP_HOST'] == "demo.minical.io"){?>
+                                if($is_hosted_prod_service || $_SERVER['HTTP_HOST'] == "app.osgrandhorizon.io" || $_SERVER['HTTP_HOST'] == "demo.osgrandhorizon.io"){?>
                                     <br/><br/>
                                     <div class="form-group" >
                                     <label for="property_type" class="col-sm-3 control-label">
@@ -479,7 +479,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h3 class="modal-title" id="myModalLabel">
-                    <?=l("A quick Introduction to Minical");?>
+                    <?=l("A quick Introduction to OS Grand Horizon");?>
                     <button type="button" class="btn btn-success pull-right" data-dismiss="modal" aria-hidden="true"><?=l("Skip");?></button>
                 </h3>
             </div>
@@ -572,7 +572,7 @@
                 $('.help-link[data-toggle="popover"]').popover('hide');
             });
         <?php 
-            setcookie("is_shown_tutorial_popover", true, time()+60*60*24*365*10, "minical.io"); // 86400 = 1 day
+            setcookie("is_shown_tutorial_popover", true, time()+60*60*24*365*10, "osgrandhorizon.io"); // 86400 = 1 day
         endif; 
         ?>
 	});

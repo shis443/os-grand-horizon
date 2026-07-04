@@ -48,7 +48,7 @@ class Admin_model extends CI_Model {
 					    cs.renewal_period,
 					    cs.payment_method,
 					    cs.subscription_id,
-                        IFNULL(wp.username, 'Minical') as  partner,
+                        IFNULL(wp.username, 'OS Grand Horizon') as  partner,
 					    capi.company_id,
 					    capi.churn_date,
 					    capi.utm_source,

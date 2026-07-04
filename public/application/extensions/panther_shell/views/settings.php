@@ -1,7 +1,7 @@
 <?php $t = function ($en, $es) use ($panther_lang) { return $panther_lang === 'spanish' ? $es : $en; }; ?>
 <div class="pn-card">
 	<h3><?= $t('Branding', 'Marca') ?></h3>
-	<p><strong>Sea Panther Reservas</strong> — <?= $t('Panther Admin console, built on miniCal.', 'Consola Panther Admin, construida sobre miniCal.') ?></p>
+	<p><strong>Sea Panther Reservas</strong> — <?= $t('Panther Admin console, built on osGrandHorizon.', 'Consola Panther Admin, construida sobre osGrandHorizon.') ?></p>
 	<p><?= $t('Theme and language can be changed from the top bar on any page.', 'El tema y el idioma se pueden cambiar desde la barra superior en cualquier página.') ?></p>
 </div>
 
