@@ -38,6 +38,7 @@ $nav_items = array(
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Panther Admin — <?= htmlspecialchars($panther_company_name) ?></title>
+	<link rel="icon" type="image/png" href="<?= $base ?>images/osgrandhorizon-logo.png">
 	<link rel="stylesheet" href="<?= $base ?>application/extensions/panther_shell/assets/panther.css">
 </head>
 <body class="panther-body">
@@ -45,7 +46,8 @@ $nav_items = array(
 <div class="pn-shell">
 	<aside class="pn-sidebar">
 		<div class="pn-brand">
-			<strong>🐾 Panther Admin</strong>
+			<img src="<?= $base ?>images/osgrandhorizon-logo.png" alt="OS Grand Horizon" class="pn-brand-logo">
+			<strong>Panther Admin</strong>
 			<span><?= htmlspecialchars($panther_company_name) ?></span>
 		</div>
 		<nav class="pn-nav">

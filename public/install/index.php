@@ -39,7 +39,7 @@ $mysqli_connection = @mysqli_connect("$dbHost", "$dbUser", "$dbPass", "$dbName")
             <div class="col-sm-1">
             </div>
             <div class="col-sm-10 main-data text-left">
-                <img src="https://user-images.githubusercontent.com/604232/125141099-e5e4f300-e0c8-11eb-9477-3e8601382ec9.png"
+                <img src="../images/osgrandhorizon-logo.png"
                      style="width: 70px;">
                 <div class="main-background-color pre_installation">
                     <h1>Pre-Installation</h1>

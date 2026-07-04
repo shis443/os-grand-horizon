@@ -64,6 +64,16 @@ a:hover { text-decoration: underline; }
 	border-bottom: 1px solid var(--pn-border);
 	margin-bottom: 10px;
 }
+.pn-brand-logo {
+	display: block;
+	width: 36px;
+	height: 36px;
+	border-radius: 8px;
+	background: #f2f4f7;
+	padding: 3px;
+	margin-bottom: 8px;
+	object-fit: contain;
+}
 .pn-brand strong { display: block; font-size: 16px; }
 .pn-brand span { color: var(--pn-text-muted); font-size: 12px; }
 

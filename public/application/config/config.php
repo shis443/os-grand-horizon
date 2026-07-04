@@ -34,6 +34,7 @@ $config['app_environment'] = $ENVIRONMENT;
 $config['base_url']	= getenv('PROJECT_URL');
 $config['api_url']	= getenv('API_URL');
 $config['branding_name'] = 'OS Grand Horizon';
+$config['branding_logo'] = 'osgrandhorizon-logo.png';
 
 $is_hosted_prod_service = getenv('IS_HOSTED_PROD_SERVICE');
 

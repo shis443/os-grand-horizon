@@ -1,5 +1,6 @@
 
-<p>
+<p align="center">
+	<img src="public/images/osgrandhorizon-logo.png" width="120" alt="OS Grand Horizon">
 	<h1 align="center">OS Grand Horizon</h1>
 </p>
 

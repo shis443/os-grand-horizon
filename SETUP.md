@@ -45,6 +45,15 @@ Without them the stock repo does not start.
 
 None of these touch application/business logic — only build/dependency plumbing.
 
+4. **`docker/nginx.conf`** — bumped `fastcgi_buffers`/`fastcgi_buffer_size`
+   from `8 16k`/`32k` to `16 32k`/`64k`. Reason: this app caches a fair
+   amount of per-user state (menus, permissions, enabled languages, panther_*
+   theme/state) in the session, and on heavier pages (e.g. `/booking`) the
+   resulting `Set-Cookie` header can push the combined response header size
+   past the default buffer, which nginx reports as `upstream sent too big
+   header while reading response header from upstream` and returns as a 502 —
+   surfaced once session data had accumulated across enough requests/features.
+
 ## 1. Environment file
 
 ```bash
