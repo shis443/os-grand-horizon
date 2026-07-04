@@ -1,8 +1,10 @@
 # PLAN.md — Sea Panther Reservas on miniCal
 
-Status: **draft, pending your sign-off**. Nothing in this plan has been built yet
-beyond the SETUP.md environment fixes. Please review §5 (open questions) before
-I start §6 (build order).
+Status: **built and verified locally** (all 7 extensions, running end-to-end at
+`http://localhost:8080/public` per SETUP.md). The 5 open questions in §5 were
+resolved with the proposed defaults (told to proceed rather than wait) — each is
+called out below and in CHANGELOG.md. Revisit any of them if you want different
+behavior; none are hard to change.
 
 ## 1. Architecture recap (what reuse actually means here)
 
@@ -86,7 +88,7 @@ model to read current sim date / active month.
 ### 4.1 `panther_grid` (adapts Booking/Booking_room_history)
 
 - **Reused as-is**: `Booking_model` queries for a date range, `booking.state`
-  (`RESERVATION/INHOUSE/CHECKOUT/...`), `booking_room_history.room_id` +
+  (`RESERVATION/INHOUSE/CHECKOUT/...`), `booking_block.room_id` (model class is named Booking_room_history_model, but the actual table is `booking_block`) +
   `check_in_date`/`check_out_date`, `booking.color`, `booking.housekeeping_notes`.
 - **New DB**: none required for the grid itself. The "cleaning-flagged" purple
   status and the extra-money badge need small linking tables — see the flagged
@@ -118,7 +120,7 @@ model to read current sim date / active month.
 
 ### 4.3 `panther_room_status` (new)
 
-- **DB**: none — occupancy/vacancy is derived from `room` + `booking_room_history`
+- **DB**: none — occupancy/vacancy is derived from `room` + `booking_block` (the actual table behind Booking_room_history_model)
   joined against `panther_shell`'s simulator date; no need to duplicate state.
 - **Routes**: `panther_room_status/index`, `panther_room_status/check_in/(:num)`
   (writes into the existing booking check-in flow — reuses `Booking_model`
@@ -190,40 +192,32 @@ model to read current sim date / active month.
   merged across all 7 extensions plus this shell; Logout is a plain link to
   the existing `auth/logout` route — zero new code.
 
-## 5. Open questions / flagged decisions (please confirm before I build)
+## 5. Open questions / flagged decisions — RESOLVED (proceeded with the proposed default on each; all built and verified)
 
-1. **"Nationality" label** — no nationality field exists in miniCal; I'm
-   reading "Aru (Airbnb)" as `guest name (booking source)`, not a literal
-   country. Confirm, or tell me you want a real nationality field added to
-   the customer record (that would be a new column on the core `customer`
-   table, which the constraints ask me to avoid touching destructively — I'd
-   add it as a nullable extension-side lookup table keyed by customer_id
-   instead).
-2. **Per-booking "Cleaning Requested" flag** — not in your 4-table list, and
-   no core boolean exists at the booking level (`room.status` is per-room,
-   not per-booking/date). I'm proposing one small additional table,
-   `cleaning_requests(id, booking_id, room, date, status, requested_at, cleared_at)`,
-   owned by `panther_housekeeping`, written to by `panther_grid`'s cell toggle.
-   Confirm this addition, or propose an alternative encoding.
-3. **Audit Trail "Clear History"** — true deletion conflicts with "append-only."
-   Proposed: archive-and-mark rather than delete (§4.6). Confirm, or accept
-   that "Clear History" really does mean irreversible delete (then the
-   immutability guarantee is scoped to "no edits, no deletes *except* this one
-   logged admin action").
-4. **Simulator date storage** — proposed write-through to `company.selling_date`
-   instead of a separate `app_state.simulator_date` column, to keep one
-   source of truth for "today" across old and new code. Confirm, or require a
-   fully independent `app_state.simulator_date` that core's own auto-checkout
-   logic would then ignore (meaning you'd lose the built-in night-audit
-   automation for anything driven by simulated dates).
-5. **Dark/light theme reach** — a global toggle that also re-skins existing
-   core pages (full booking calendar, settings, invoices, etc.) requires one
-   small, clearly-scoped core touch: a body-class/CSS-link injection point in
-   `views/includes/bootstrapped_template.php` (the shared base template every
-   page — including our own — already extends). Alternative: scope dark/light
-   strictly to our 7 new/adapted pages and leave the rest of core in its
-   existing light styling. I'd default to the **scoped** option to honor
-   "leave upstream core patchable," unless you want the whole app themed.
+1. **"Nationality" label** — RESOLVED as `guest name (booking source)`, e.g.
+   "Aru (AirBNB)" (capitalization is miniCal's own `COMMON_BOOKING_SOURCES`
+   constant, not ours). No customer schema change made. Revisit if you want a
+   literal nationality field instead.
+2. **Per-booking "Cleaning Requested" flag** — RESOLVED: added
+   `cleaning_requests(id, company_id, booking_id, room_id, request_date, status, requested_at, cleared_at)`
+   (migration `002_panther_extensions.php`), written by `panther_grid`'s toggle,
+   read by `panther_housekeeping`. Verified: toggling from the grid correctly
+   surfaces the room on the Cleaning Schedule and clears on "Mark Clean."
+3. **Audit Trail "Clear History"** — RESOLVED as archive-and-mark
+   (`Audit_log_model::archive_all()`): live rows move to `audit_log_archive`,
+   nothing is deleted, and the clear action itself is logged as the first new
+   entry. Verified live: clearing 3 entries left exactly 1 (the clear-history
+   entry itself) in `audit_log`, 3 in `audit_log_archive`.
+4. **Simulator date storage** — RESOLVED as write-through to
+   `company.selling_date` (`App_state_model::set_simulator_date`/`get_simulator_date`).
+   `app_state` has no `simulator_date` column. Verified: setting it via the
+   header control updates `company.selling_date` directly.
+5. **Dark/light theme reach** — RESOLVED as scoped: only the 7 panther_* pages
+   respect the dark/light toggle (`data-panther-theme` + CSS variables in
+   `panther_shell/assets/panther.css`); no existing core view was modified for
+   theming. Revisit if you want the whole app (booking calendar, settings,
+   invoices) themed too — that would need the `bootstrapped_template.php`
+   injection point described in the original draft of this question.
 
 ## 6. Constraints checklist
 
@@ -238,15 +232,26 @@ model to read current sim date / active month.
   and for `Audit_log_model` (assert no update/delete methods exist / archive
   behavior on clear).
 
-## 7. Suggested build order (one feature branch, one commit per extension)
+## 7. Build order — COMPLETE
 
-1. `panther_shell` (chassis — everything else depends on its nav/app_state/simulator date)
-2. `panther_audit_log` (other extensions call into it from day one)
-3. `panther_surcharges`
-4. `panther_cash_register`
-5. `panther_grid` (adapts core booking data + writes to surcharges/audit/cleaning flag)
-6. `panther_housekeeping`
-7. `panther_room_status`
-8. Seed data for demo July sheet + CHANGELOG.md
+1. `panther_shell` ✅
+2. `panther_audit_log` ✅
+3. `panther_surcharges` ✅
+4. `panther_cash_register` ✅
+5. `panther_grid` ✅
+6. `panther_housekeeping` ✅
+7. `panther_room_status` ✅
+8. Demo July seed data + CHANGELOG.md ✅
 
-I'll pause here for your go-ahead on §5 before writing any extension code.
+All 7 pages verified end-to-end via authenticated HTTP requests against the local
+Docker stack (see SETUP.md): grid renders check-in/reserved/checkout/turnover
+cells correctly with extra-money badges; housekeeping/room-status/surcharges/
+cash-register nav badges reflect live data; check-in, mark-clean, collect-€,
+theme/language toggle, simulator-date write-through, sync-to-month, and
+clear-history (archive) actions were all exercised and confirmed against the
+database, not just rendered.
+
+One known follow-up: a fresh admin account created via the streamlined
+registration path has a blank first/last name until you fill out your profile —
+the audit log falls back to email, then to `#<user_id>`, so this doesn't block
+anything.

@@ -107,18 +107,67 @@ Equivalently, you can just drive the wizard UI at
 same two endpoints (`db_verification.php`, `database_seeding.php`) via AJAX in
 a loop.
 
-## 5. Verify
+## 5. Create the admin account
 
-```bash
-curl http://localhost:8080/public/auth/login     # 200
-curl http://localhost:8080/public/auth/register   # 200 — create the first admin account here
+Open `http://localhost:8080/public/auth/register` in a browser and register
+(email + password). This creates a company with 10 default rooms via
+`auth::new_register_AJAX`. To match the fixed 3-cabin config, either use
+Settings → Rooms in the UI, or do it once via SQL (what this build used):
+
+```sql
+UPDATE company SET name='Sea Panther Reservas', default_currency_id=49 WHERE company_id=1; -- 49 = EUR
+UPDATE room_type SET name='Master Bedroom', acronym='MBR' WHERE id=1;
+INSERT INTO room_type (name, company_id, acronym, is_deleted, max_occupancy, min_occupancy, max_adults, max_children, can_be_sold_online, sort)
+  VALUES ('Double Room', 1, 'DBL', 0, 2, 1, 2, 0, 1, 2);
+UPDATE room SET room_name='Sunset', room_type_id=1 WHERE room_id=1;
+UPDATE room SET room_name='Sunrise1', room_type_id=2 WHERE room_id=2;
+UPDATE room SET room_name='Sunrise2', room_type_id=2 WHERE room_id=3;
+DELETE FROM room WHERE room_id IN (4,5,6,7,8,9,10);
+UPDATE company SET number_of_rooms=3 WHERE company_id=1;
 ```
 
-Then open `http://localhost:8080/public/auth/register` in a browser, create
-the admin/company account, and log in. From there, `Properties → Rooms` is
-where the 3 cabins (Sunset, Sunrise1, Sunrise2) get configured, and
-`Settings → Extensions` is where custom extensions (see PLAN.md) get toggled
-on per-company once installed under `public/application/extensions/`.
+## 6. Migrate + activate the Sea Panther Reservas extensions
+
+The panther_* extension tables ship as migration `002_panther_extensions.php`
+(bumps `config/migration.php`'s `migration_version` to 2) — re-run the same
+migrate call from step 3 to pick it up:
+
+```bash
+curl "http://localhost:8080/public/migrate?MIGRATION_REQUEST=1"
+```
+
+Activation is pure local DB (see PLAN.md §1) — insert one row per extension
+per company:
+
+```sql
+INSERT INTO extensions_x_company (extension_name, company_id, is_active, is_favourite) VALUES
+('panther_shell', 1, 1, 0), ('panther_audit_log', 1, 1, 0), ('panther_surcharges', 1, 1, 0),
+('panther_cash_register', 1, 1, 0), ('panther_grid', 1, 1, 0),
+('panther_housekeeping', 1, 1, 0), ('panther_room_status', 1, 1, 0);
+```
+
+Then visit `http://localhost:8080/public/panther_shell` (the console's home —
+linked nowhere in core's own nav, since core's sidebar is a separate DB-driven
+system; see PLAN.md §5 dark/light note for why we built our own chrome instead
+of fighting it) and click **Reset Demo Data** to load the demo July sheet, or
+call it directly:
+
+```bash
+curl -X POST http://localhost:8080/public/panther_shell/reset_data --cookie <your-session-cookie>
+```
+
+## 7. Verify
+
+```bash
+curl http://localhost:8080/public/panther_shell           # 200 — chassis/settings
+curl http://localhost:8080/public/panther_grid             # 200 — reservation grid
+curl http://localhost:8080/public/panther_housekeeping     # 200
+curl http://localhost:8080/public/panther_room_status      # 200
+curl http://localhost:8080/public/panther_surcharges       # 200
+curl http://localhost:8080/public/panther_cash_register    # 200
+curl http://localhost:8080/public/panther_audit_log        # 200
+```
+(all require the authenticated session cookie from login)
 
 ## Useful side tools
 
