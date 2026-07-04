@@ -93375,11 +93375,14 @@ $(document).ready(function(){
     $('.desktop-toggle-nav').on('click', function(e) {
 
         $(this).toggleClass("is-active");
-        
-        $('.app-container').toggleClass('closed-sidebar-mobile closed-sidebar');  
-        
-        setCookie('sidebartogglevalue', !$('.app-container').hasClass('closed-sidebar-mobile closed-sidebar')); 
-    });   
+
+        var $container = $('.app-container');
+        var isNowClosed = !$container.hasClass('closed-sidebar');
+        $container.toggleClass('closed-sidebar-mobile', isNowClosed);
+        $container.toggleClass('closed-sidebar', isNowClosed);
+
+        setCookie('sidebartogglevalue', !isNowClosed);
+    });
 });
 function setCookie(cname, cvalue, exdays) {
     var d = new Date();

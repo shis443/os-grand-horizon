@@ -501,7 +501,7 @@
 		left: 460px !important;
 	}
 </style>
-<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="<?php echo base_url() . 'js/jquery-1.11.2.min.js'; ?>"></script>
 <script>
 	$(document).ready(function(){
             var registration_session = $('#registration_session').val();
