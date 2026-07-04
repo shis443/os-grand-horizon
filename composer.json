@@ -1,0 +1,13 @@
+{
+  "require": {
+  	"stripe/stripe-php": "^7.77",
+    "vlucas/phpdotenv": "^4.2",
+    "lifenpag/asaas-php": "^1.0",
+    "rinvex/countries": "^7.3"
+  },
+  "config": {
+    "platform": {
+      "php": "7.4.33"
+    }
+  }
+}

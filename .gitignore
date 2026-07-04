@@ -1,0 +1,14 @@
+.buildpath
+.project
+vendor
+composer.phar
+/CI_phpStorm.php
+/DB_active_rec.php
+/my_models.php
+/*.sql
+.env
+/nbproject/private/
+/public/application/extensions/*
+!/public/application/extensions/README.md
+!/public/application/extensions/panther_*
+.claude/
