@@ -1,0 +1,33 @@
+{
+  "id": "bcom-test-0005",
+  "property_id": "test-property-uuid",
+  "revision_id": "rev-0005",
+  "unique_id": "bcom-unique-0005",
+  "ota_reservation_code": "BDC999999999",
+  "ota_name": "Booking.com",
+  "status": "new",
+  "arrival_date": "2026-08-14",
+  "departure_date": "2026-08-17",
+  "arrival_hour": "15:00",
+  "amount": "450.00",
+  "currency": "EUR",
+  "ota_commission": "67.50",
+  "customer": {
+    "name": "Jonas",
+    "surname": "Weber",
+    "mail": "guest-alias-2@guest.booking.com",
+    "country": "DE"
+  },
+  "occupancy": { "adults": 2, "children": 0, "infants": 0 },
+  "rooms": [
+    {
+      "amount": "450.00",
+      "checkin_date": "2026-08-14",
+      "checkout_date": "2026-08-17",
+      "rate_plan_id": "rate-plan-master-uuid",
+      "room_type_id": "room-type-master-uuid",
+      "occupancy": { "adults": 2, "children": 0, "infants": 0 }
+    }
+  ],
+  "inserted_at": "2026-07-06T10:00:00Z"
+}

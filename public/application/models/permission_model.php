@@ -38,10 +38,14 @@ class Permission_model extends CI_Model {
                 )
             ) ||
             (
-                $controller_name === "channex_bookings" && 
-                (
-                    $function_name === 'channex_get_bookings'
-                )
+                // panther_channel_public (core controller, see that file's docblock for
+                // why the webhook/cron actions can't live inside the panther_channel HMVC
+                // extension itself): Channex calls the webhook with no session, and system
+                // crontab calls the cron_* actions with no session. Each action still does
+                // its own explicit secret check internally (shared-secret header /
+                // CRON_AUTH_SECRET) — see PLAN_CHANNEL.md §3. The panther_channel extension's
+                // own admin UI controller is untouched by this and still requires login.
+                $controller_name === "panther_channel_public"
             ) ||
 
             (

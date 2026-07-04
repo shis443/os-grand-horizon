@@ -17,7 +17,7 @@ class Panther_controller extends MY_Controller {
 	protected $panther_modules = array(
 		'panther_shell', 'panther_audit_log', 'panther_surcharges',
 		'panther_cash_register', 'panther_grid', 'panther_housekeeping',
-		'panther_room_status',
+		'panther_room_status', 'panther_channel',
 	);
 
 	public function __construct()
@@ -58,6 +58,9 @@ class Panther_controller extends MY_Controller {
 
 		$this->load->model('surcharges_model', 'ps_badge');
 		$badges['surcharges_total_label'] = $this->ps_badge->uncleared_total_label($this->company_id);
+
+		$this->load->model('channel_sync_log_model', 'csl_badge');
+		$badges['channel_failed_count'] = $this->csl_badge->get_failed_count();
 
 		return $badges;
 	}

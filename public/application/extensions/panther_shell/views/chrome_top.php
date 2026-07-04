@@ -30,6 +30,7 @@ $nav_items = array(
 	array('key' => 'surcharges',    'label' => $t('Surcharges', 'Cargos Extra'),                  'url' => 'panther_surcharges', 'badge_text' => isset($panther_badges['surcharges_total_label']) ? $panther_badges['surcharges_total_label'] : null),
 	array('key' => 'cash_register', 'label' => $t('Cash Register', 'Caja Registradora'),          'url' => 'panther_cash_register'),
 	array('key' => 'audit_log',     'label' => $t('Audit Log', 'Registro de Auditoría'),          'url' => 'panther_audit_log'),
+	array('key' => 'channels',      'label' => $t('Channels', 'Canales'),                         'url' => 'panther_channel', 'badge' => isset($panther_badges['channel_failed_count']) && $panther_badges['channel_failed_count'] > 0 ? $panther_badges['channel_failed_count'] : null),
 );
 ?><!DOCTYPE html>
 <html lang="<?= $panther_lang === 'spanish' ? 'es' : 'en' ?>" data-panther-theme="<?= htmlspecialchars($panther_theme) ?>">

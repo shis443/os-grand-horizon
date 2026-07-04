@@ -1,0 +1,27 @@
+{
+  "id": "abnb-test-0002",
+  "property_id": "test-property-uuid",
+  "revision_id": "rev-0004",
+  "unique_id": "abnb-unique-0002",
+  "ota_reservation_code": "HMABCD1234",
+  "ota_name": "Airbnb",
+  "status": "cancelled",
+  "arrival_date": "2026-08-13",
+  "departure_date": "2026-08-15",
+  "amount": "260.00",
+  "currency": "EUR",
+  "customer": {
+    "name": "Alex",
+    "surname": "Guest",
+    "mail": "alex-abc123@guest.airbnb.com"
+  },
+  "rooms": [
+    {
+      "checkin_date": "2026-08-13",
+      "checkout_date": "2026-08-15",
+      "rate_plan_id": "rate-plan-double-uuid",
+      "room_type_id": "room-type-double-uuid"
+    }
+  ],
+  "inserted_at": "2026-07-06T09:00:00Z"
+}

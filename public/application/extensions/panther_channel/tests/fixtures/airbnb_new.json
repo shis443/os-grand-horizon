@@ -1,0 +1,35 @@
+{
+  "id": "abnb-test-0002",
+  "property_id": "test-property-uuid",
+  "revision_id": "rev-0002",
+  "unique_id": "abnb-unique-0002",
+  "ota_reservation_code": "HMABCD1234",
+  "ota_name": "Airbnb",
+  "status": "new",
+  "arrival_date": "2026-08-13",
+  "departure_date": "2026-08-15",
+  "arrival_hour": null,
+  "amount": "260.00",
+  "currency": "EUR",
+  "ota_commission": "0.00",
+  "customer": {
+    "name": "Alex",
+    "surname": "Guest",
+    "mail": "alex-abc123@guest.airbnb.com",
+    "phone": null,
+    "country": "IE"
+  },
+  "occupancy": { "adults": 2, "children": 1, "infants": 0 },
+  "rooms": [
+    {
+      "amount": "260.00",
+      "checkin_date": "2026-08-13",
+      "checkout_date": "2026-08-15",
+      "rate_plan_id": "rate-plan-double-uuid",
+      "room_type_id": "room-type-double-uuid",
+      "occupancy": { "adults": 2, "children": 1, "infants": 0 }
+    }
+  ],
+  "notes": null,
+  "inserted_at": "2026-07-04T11:00:00Z"
+}

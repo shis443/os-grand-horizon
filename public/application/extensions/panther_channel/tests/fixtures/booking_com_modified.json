@@ -1,0 +1,35 @@
+{
+  "id": "bcom-test-0001",
+  "property_id": "test-property-uuid",
+  "revision_id": "rev-0003",
+  "unique_id": "bcom-unique-0001",
+  "ota_reservation_code": "BDC123456789",
+  "ota_name": "Booking.com",
+  "status": "modified",
+  "arrival_date": "2026-08-10",
+  "departure_date": "2026-08-14",
+  "arrival_hour": "16:00",
+  "amount": "600.00",
+  "currency": "EUR",
+  "ota_commission": "90.00",
+  "customer": {
+    "name": "Maria",
+    "surname": "Fernandez",
+    "mail": "guest-alias-1@guest.booking.com",
+    "phone": "+34600000001",
+    "country": "ES"
+  },
+  "occupancy": { "adults": 2, "children": 0, "infants": 0 },
+  "rooms": [
+    {
+      "amount": "600.00",
+      "checkin_date": "2026-08-10",
+      "checkout_date": "2026-08-14",
+      "rate_plan_id": "rate-plan-master-uuid",
+      "room_type_id": "room-type-master-uuid",
+      "occupancy": { "adults": 2, "children": 0, "infants": 0 }
+    }
+  ],
+  "notes": "Extended stay by one night",
+  "inserted_at": "2026-07-05T09:00:00Z"
+}
