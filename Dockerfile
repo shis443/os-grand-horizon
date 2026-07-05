@@ -1,7 +1,7 @@
-# Combined nginx + php-fpm image for Fly.io.
-# Local dev keeps using docker-compose.yaml (separate nginx/php containers);
-# this single-container image exists only because Fly runs one process tree
-# per machine, so nginx and php-fpm are supervised together here instead.
+# Combined nginx + php-fpm image for single-container platforms (Railway,
+# Fly.io). Local dev keeps using docker-compose.yaml (separate nginx/php
+# containers); this exists because those platforms run one process tree per
+# service, so nginx and php-fpm are supervised together here instead.
 FROM composer:2 AS vendor
 WORKDIR /app
 COPY composer.json composer.lock* ./
