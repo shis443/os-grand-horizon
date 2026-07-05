@@ -3,3 +3,4 @@
 $config['name']        = 'Audit Trail Log';
 $config['description'] = 'Append-only log of check-ins, check-outs, extra fees, and cleaning actions.';
 $config['is_admin_module'] = true;
+$config['image_name'] = 'osgrandhorizon-logo.png';

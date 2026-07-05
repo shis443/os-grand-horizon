@@ -233,7 +233,39 @@ $(document).ready(function(){
 });
 </script>
 
-<?php 
+<script type="text/javascript">
+// Sidebar collapse/expand toggle, bound independently of js/main.js.
+// main.js is a ~93k-line legacy bundle; if anything earlier in that file
+// throws at runtime, code appended after it (including its own copy of this
+// exact handler) never registers, silently leaving the hamburger button
+// inert. This binds the same handler again here — .off('click') first so
+// there is never a double-binding that would toggle twice (i.e. cancel
+// itself out) if main.js's own copy happens to have registered too.
+$(document).ready(function(){
+    // Unqualified .off('click') on purpose: removes ANY click handler already
+    // bound to this button (namespaced or not, including main.js's own copy,
+    // whether or not it actually registered), guaranteeing exactly one
+    // handler fires per click no matter what else ran before this point.
+    $('.desktop-toggle-nav, .mobile-toggle-nav').off('click').on('click.pantherSidebarToggle', function(){
+        $(this).toggleClass('is-active');
+
+        var $container = $('.app-container');
+        var isNowClosed = !$container.hasClass('closed-sidebar');
+        $container.toggleClass('closed-sidebar-mobile', isNowClosed);
+        $container.toggleClass('closed-sidebar', isNowClosed);
+
+        if (typeof setCookie === 'function') {
+            setCookie('sidebartogglevalue', !isNowClosed);
+        } else {
+            var d = new Date();
+            d.setTime(d.getTime() + (365 * 24 * 60 * 60 * 1000));
+            document.cookie = 'sidebartogglevalue=' + (!isNowClosed) + ';expires=' + d.toUTCString() + ';path=/';
+        }
+    });
+});
+</script>
+
+<?php
 	echo "<script>
     COUNTRIES_OBJ = JSON.parse('".(COUNTRIES)."');
         </script>";

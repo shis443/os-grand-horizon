@@ -3,3 +3,4 @@
 $config['name']        = 'Surcharges';
 $config['description'] = 'Extra Money Notice Fees ledger (minibar, damages, pets, extra guests).';
 $config['is_admin_module'] = true;
+$config['image_name'] = 'osgrandhorizon-logo.png';
