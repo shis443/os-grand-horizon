@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "framework": null,
+  "functions": {
+    "api/index.php": { "runtime": "vercel-php@0.3.8" },
+    "api/restapi.php": { "runtime": "vercel-php@0.3.8" }
+  },
+  "routes": [
+    { "src": "/public/(css|js|images|fonts)/(.*)", "dest": "/public/$1/$2" },
+    { "src": "/public/(.*)", "dest": "/api/index.php?/$1" },
+    { "src": "/api/(.*)", "dest": "/api/restapi.php?/$1" },
+    { "src": "/$", "dest": "/api/index.php?/" }
+  ]
+}

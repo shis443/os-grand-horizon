@@ -46,8 +46,13 @@ $db['default']['hostname'] = getenv("DATABASE_HOST");
 $db['default']['username'] = getenv("DATABASE_USER");
 $db['default']['password'] = getenv("DATABASE_PASS");
 $db['default']['database'] = getenv("DATABASE_NAME");
+$db['default']['port'] = getenv("DATABASE_PORT") ?: '';
+// TiDB Cloud / other managed MySQL hosts require TLS; set DATABASE_SSL=true
+// in that environment's secrets. Left unset locally (Docker MariaDB has no
+// TLS listener), so this defaults to FALSE and changes nothing there.
+$db['default']['encrypt'] = (getenv("DATABASE_SSL") === 'true');
 
-	
+
 $db['default']['dbdriver'] = 'mysqli';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;

@@ -1,0 +1,17 @@
+# Separate Fly app for the database, reached over Fly's private 6PN network
+# at os-grand-horizon-db.internal:3306 — never exposed publicly, so there is
+# no [http_service]/[[services]] block here on purpose.
+app = "os-grand-horizon-db"
+primary_region = "iad"
+
+[build]
+  image = "mariadb:10.11"
+
+[[mounts]]
+  source = "mariadb_data"
+  destination = "/var/lib/mysql"
+
+[[vm]]
+  memory = "512mb"
+  cpu_kind = "shared"
+  cpus = 1

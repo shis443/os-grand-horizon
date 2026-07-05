@@ -1,0 +1,25 @@
+app = "os-grand-horizon"
+primary_region = "iad"
+
+[build]
+  dockerfile = "docker/Fly.Dockerfile"
+
+[env]
+  ENVIRONMENT = "production"
+  PROJECT_URL = "https://os-grand-horizon.fly.dev/public"
+  API_URL = "https://os-grand-horizon.fly.dev/api"
+  DATABASE_HOST = "os-grand-horizon-db.internal"
+  DATABASE_NAME = "osgrandhorizon"
+  DATABASE_USER = "osgrandhorizon"
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  auto_stop_machines = false
+  auto_start_machines = true
+  min_machines_running = 1
+
+[[vm]]
+  memory = "512mb"
+  cpu_kind = "shared"
+  cpus = 1

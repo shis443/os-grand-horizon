@@ -67,6 +67,19 @@ class CI_DB_mysqli_driver extends CI_DB {
 	 */
 	function db_connect()
 	{
+		// TiDB Cloud / PlanetScale-style managed hosts require TLS; plain
+		// mysqli_connect() has no way to request it, so route through
+		// mysqli_real_connect() with MYSQLI_CLIENT_SSL when opted in via
+		// $db['default']['encrypt'] (config/database.php). Local Docker
+		// MariaDB leaves 'encrypt' unset and keeps using the path below.
+		if (!empty($this->encrypt))
+		{
+			$conn = mysqli_init();
+			mysqli_ssl_set($conn, NULL, NULL, NULL, NULL, NULL);
+			@mysqli_real_connect($conn, $this->hostname, $this->username, $this->password, $this->database, ($this->port != '' ? $this->port : 3306), NULL, MYSQLI_CLIENT_SSL);
+			return $conn;
+		}
+
 		if ($this->port != '')
 		{
 			return @mysqli_connect($this->hostname, $this->username, $this->password, $this->database, $this->port);

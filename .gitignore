@@ -12,3 +12,5 @@ composer.phar
 !/public/application/extensions/README.md
 !/public/application/extensions/panther_*
 .claude/
+.vercel
+.env*
