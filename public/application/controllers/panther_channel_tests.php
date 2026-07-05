@@ -10,8 +10,12 @@
  *
  * Run: docker exec docker-php-1 php /app/public/index.php panther_channel_tests run
  *
- * Assumes migration 004/005 applied and a test ota_x_company + ota_room_types
- * mapping exist for company_id=1 (see RUNBOOK_CHANNEL.md "Running the tests").
+ * Assumes migration 004/005 applied. Fully self-contained otherwise: creates
+ * its own synthetic ota_x_company/ota_room_types mapping at the start of
+ * run() and tears it down again at the end (_setup_test_mapping()/
+ * _teardown_test_mapping()), so the admin UI's Channels page still shows an
+ * honest "not connected" state before and after a test run — no manual setup
+ * required, safely re-runnable, including after a crashed prior run.
  */
 class Panther_channel_tests extends CI_Controller {
 
@@ -46,6 +50,7 @@ class Panther_channel_tests extends CI_Controller {
 		echo "=== panther_channel normalization tests ===\n";
 
 		$this->_cleanup();
+		$this->_setup_test_mapping();
 		$this->_test_new_booking_dot_com();
 		$this->_test_new_airbnb();
 		$this->_test_idempotent_redelivery();
@@ -54,6 +59,7 @@ class Panther_channel_tests extends CI_Controller {
 		$this->_test_cancellation();
 		$this->_test_conflict_not_overwritten();
 		$this->_test_push_queue_enqueued();
+		$this->_teardown_test_mapping();
 
 		echo "\n=== {$this->pass} passed, {$this->fail} failed ===\n";
 		if ($this->fail > 0) {
@@ -207,6 +213,41 @@ class Panther_channel_tests extends CI_Controller {
 		return json_decode($json, true);
 	}
 
+	/**
+	 * The normalizer needs a real ota_x_company/ota_room_types mapping to
+	 * resolve the fixtures' room_type_id UUIDs to our 2 local room types.
+	 * Self-contained on purpose: the admin UI's Channels page should show
+	 * an honest "not connected" state between test runs, so this creates
+	 * its own synthetic mapping and _teardown_test_mapping() removes it
+	 * again at the end, rather than relying on it being left in place.
+	 */
+	private function _setup_test_mapping()
+	{
+		$this->db->insert('ota_manager', array(
+			'ota_id' => 1, 'email' => 'test@seapanther.local', 'meta_data' => '{}',
+			'company_id' => $this->company_id, 'created_date' => date('Y-m-d H:i:s'),
+		));
+		$manager_id = $this->db->insert_id();
+
+		$this->db->insert('ota_x_company', array(
+			'company_id' => $this->company_id, 'ota_manager_id' => $manager_id,
+			'ota_property_id' => 'test-property-uuid', 'is_active' => 1,
+		));
+		$oxc_id = $this->db->insert_id();
+
+		$this->db->insert_batch('ota_room_types', array(
+			array('ota_x_company_id' => $oxc_id, 'ota_room_type_id' => 'room-type-master-uuid', 'osgrandhorizon_room_type_id' => 1, 'company_id' => $this->company_id),
+			array('ota_x_company_id' => $oxc_id, 'ota_room_type_id' => 'room-type-double-uuid', 'osgrandhorizon_room_type_id' => 2, 'company_id' => $this->company_id),
+		));
+	}
+
+	private function _teardown_test_mapping()
+	{
+		$this->db->where('ota_property_id', 'test-property-uuid')->delete('ota_x_company');
+		$this->db->where('email', 'test@seapanther.local')->delete('ota_manager');
+		$this->db->where_in('ota_room_type_id', array('room-type-master-uuid', 'room-type-double-uuid'))->delete('ota_room_types');
+	}
+
 	private function assert($condition, $label)
 	{
 		if ($condition) {
@@ -237,5 +278,8 @@ class Panther_channel_tests extends CI_Controller {
 
 		$this->db->where('company_id', $this->company_id)->where_in('reason', array('channel_booking_new', 'channel_booking_modified', 'channel_booking_cancelled'))->delete('channel_push_queue');
 		$this->db->where('customer_name', 'Manual Guest')->delete('customer');
+
+		// In case a previous run crashed before _teardown_test_mapping() ran.
+		$this->_teardown_test_mapping();
 	}
 }

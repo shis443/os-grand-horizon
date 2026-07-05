@@ -46,13 +46,25 @@ Without them the stock repo does not start.
 None of these touch application/business logic — only build/dependency plumbing.
 
 4. **`docker/nginx.conf`** — bumped `fastcgi_buffers`/`fastcgi_buffer_size`
-   from `8 16k`/`32k` to `16 32k`/`64k`. Reason: this app caches a fair
-   amount of per-user state (menus, permissions, enabled languages, panther_*
-   theme/state) in the session, and on heavier pages (e.g. `/booking`) the
-   resulting `Set-Cookie` header can push the combined response header size
-   past the default buffer, which nginx reports as `upstream sent too big
-   header while reading response header from upstream` and returns as a 502 —
-   surfaced once session data had accumulated across enough requests/features.
+   from `8 16k`/`32k` to `16 32k`/`64k`. This was a band-aid for the real bug
+   found below (5) — raised anyway since it's cheap insurance.
+5. **`public/application/libraries/MY_Session.php`** — the actual root cause
+   of the 502 above: CI's legacy `CI_Session::set_userdata()`/
+   `unset_userdata()` (in `system/libraries/Session.php`, left untouched —
+   see the fix's docblock for why the override lives in the app-level
+   `MY_Session` subclass instead) each call `sess_write()` → `_set_cookie()`
+   on *every single invocation*. A request that caches several things into
+   the session per request (this app caches menus, permissions, enabled
+   languages, panther_* theme/state, etc.) can call `set_userdata()` dozens
+   of times, and PHP never deduplicates repeated `Set-Cookie` headers — one
+   `/booking` request was observed sending **111 separate `Set-Cookie`
+   headers**, comfortably enough to exceed even the bumped nginx buffer
+   above. Overrode `_set_cookie()` in `MY_Session.php` to
+   `header_remove('Set-Cookie')` immediately before each write, so only the
+   single latest (correct, complete) value is ever actually sent regardless
+   of how many times it's called within one request. Verified: same page,
+   same session, 1 `Set-Cookie` header after the fix, login/session
+   behavior unaffected across repeated requests.
 
 ## 1. Environment file
 

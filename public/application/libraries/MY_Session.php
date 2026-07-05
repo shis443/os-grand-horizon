@@ -289,6 +289,32 @@ class MY_Session extends CI_Session
         return TRUE;
     }
 
+    /**
+     * The parent CI_Session::set_userdata()/unset_userdata() each call
+     * sess_write(), which calls this on every single invocation — a
+     * request that caches several things into the session (this app
+     * caches menus, user permissions, enabled languages, panther_* theme
+     * state, etc.) can end up calling this dozens of times. PHP never
+     * deduplicates repeated `Set-Cookie` response headers (every call to
+     * setcookie() appends another one), so a chatty request could send
+     * 100+ Set-Cookie headers, which is enough to exceed a webserver's
+     * response-header buffer size (observed as a 502 "upstream sent too
+     * big header" from nginx). Clearing any Set-Cookie header queued
+     * earlier in THIS request before adding the fresh one means only the
+     * single latest (and correct/complete) value is ever actually sent.
+     *
+     * @access	private
+     * @return	void
+     */
+    function _set_cookie($cookie_data = NULL)
+    {
+        if (!headers_sent())
+        {
+            header_remove('Set-Cookie');
+        }
+
+        parent::_set_cookie($cookie_data);
+    }
 
 }
 
