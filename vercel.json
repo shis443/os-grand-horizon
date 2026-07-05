@@ -1,11 +1,11 @@
 {
   "version": 2,
   "framework": null,
-  "functions": {
-    "api/index.php": { "runtime": "vercel-php@0.3.8" },
-    "api/restapi.php": { "runtime": "vercel-php@0.3.8" },
-    "api/ping.php": { "runtime": "vercel-php@0.3.8" }
-  },
+  "builds": [
+    { "src": "api/index.php", "use": "vercel-php@0.3.8" },
+    { "src": "api/restapi.php", "use": "vercel-php@0.3.8" },
+    { "src": "api/ping.php", "use": "vercel-php@0.3.8" }
+  ],
   "routes": [
     { "src": "/public/(css|js|images|fonts)/(.*)", "dest": "/public/$1/$2" },
     { "src": "/public/(.*)", "dest": "/api/index.php?/$1" },
