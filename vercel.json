@@ -2,8 +2,8 @@
   "version": 2,
   "framework": null,
   "builds": [
-    { "src": "api/index.php", "use": "vercel-php@0.3.8" },
-    { "src": "api/restapi.php", "use": "vercel-php@0.3.8" },
+    { "src": "api/index.php", "use": "vercel-php@0.7.3" },
+    { "src": "api/restapi.php", "use": "vercel-php@0.7.3" },
     { "src": "api/ping.php", "use": "vercel-php@0.7.3" }
   ],
   "routes": [
