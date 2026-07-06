@@ -4672,6 +4672,20 @@
   margin-left: 190px;
 }
 
+/* .openbtn sits absolutely positioned at margin-left:190px with no width
+   limit on the sidebar title next to it, so a long company/brand name runs
+   underneath the button instead of stopping short of it. Truncating just
+   the <b> (not the whole <a>) keeps the multi-company caret after it
+   visible instead of clipping it along with any overflow. */
+.sidebar__logo .multi-properties > a > b {
+  display: inline-block;
+  max-width: 150px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  vertical-align: middle;
+}
+
 .pe-7s-date:before{
   color: black;
   font-weight: bold;
